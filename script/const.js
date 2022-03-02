@@ -1,0 +1,30 @@
+import { css } from "lit";
+const color = {
+  primary: css`#0082c6`,
+  blue: css`#0082c6`,
+  red: css`#ed1b34`,
+  yellow: css`#faa61a`,
+  white: css`#ffffff`,
+  repGreen: css`#30c436`,
+  repGreenLight: css`#60e38f`,
+  repRed: css`#c82a32`,
+  repRedLight: css`#e4555d`,
+  repNeutral: css`#cccccc`,
+  repDisabled: css`#454545`,
+  "grey-0": css`#f9f9f9`,
+  "grey-1": css`#ebebeb`,
+  "grey-2": css`#d9d9d9`,
+  "grey-3": css`#c7c7c7`,
+  "grey-4": css`#b3b3b3`,
+  "grey-5": css`#5c5c5c`,
+  "grey-6": css`#333333`,
+  "grey-7": css`#202020`,
+  "grey-8": css`#171717`,
+  primaryGrey: css`#202020`,
+  secondaryGrey: css`#5c5c5c`,
+  tertiaryGrey: css`#b3b3b3`,
+  primaryGreyNight: css`#ebebeb`,
+  secondaryGreyNight: css`#c7c7c7`,
+  tertiaryGreyNight: css`#5c5c5c`
+};
+export { color as c };

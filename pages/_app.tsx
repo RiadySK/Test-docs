@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   React.useEffect(() => {
-    import("../../dist/eternals.es").then(({ default: reload }) => {
+    import("../script/eternals.es").then(({ default: reload }) => {
       const handleRouteChange = () => {
         reload();
       }
