@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function Header() {
   return (
     <div className="sticky top-0 left-0 w-full bg-white">
