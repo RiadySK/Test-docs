@@ -4,7 +4,31 @@ import Head from 'next/head'
 import parse from 'html-react-parser';
 import Layout from '../../components/layout';
 import CodeEditorComponent from '../../components/codeEditor';
-import code from './_code'
+
+const code = `
+  <div className="grid grid-cols-2 gap-4 bg-slate-100 p-8 w-full">
+    <div className="w-full">
+      <kaskus-button
+        data-id="riady"
+        data-ga="riyeayady"
+        text="Primary"
+        onclick="alert('I love kaskus')"
+      ></kaskus-button>
+    </div>
+    <div className="w-full">
+      <kaskus-button
+        variant="secondary"
+        text="Secondary"
+      ></kaskus-button>
+    </div>
+    <div className="w-full">
+      <kaskus-button
+        variant="alternate"
+        text="Alternate"
+      ></kaskus-button>
+    </div>
+  </div>
+`;
 
 const ButtonPage: NextPage = () => {
   const [editorCode, setEditorCode] = useState(code);
