@@ -1,0 +1,40 @@
+module.exports = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+    colors: {
+      primary: '#0082c6',
+      blue: '#0082c6',
+      red: '#ed1b34',
+      yellow: '#faa61a',
+      white: '#ffffff',
+      repGreen: '#30c436',
+      repGreenLight: '#60e38f',
+      repRed: '#c82a32',
+      repRedLight: '#e4555d',
+      repNeutral: '#cccccc',
+      repDisabled: '#454545',
+      grey: {
+        0: '#f9f9f9',
+        1: '#ebebeb',
+        2: '#d9d9d9',
+        3: '#c7c7c7',
+        4: '#b3b3b3',
+        5: '#5c5c5c',
+        6: '#333333',
+        7: '#202020',
+        8: '#171717',
+      },
+      primaryGrey: '#202020',
+      secondaryGrey: '#5c5c5c',
+      tertiaryGrey: '#b3b3b3',
+      primaryGreyNight: '#ebebeb',
+      secondaryGreyNight: '#c7c7c7',
+      tertiaryGreyNight: '#5c5c5c',
+    }
+  },
+  plugins: [],
+}
