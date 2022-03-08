@@ -1,20 +1,21 @@
 import React from 'react';
 import Head from 'next/head';
 import Layout from '../../components/layout';
-import ButtonScreen from '../../screens/button';
+import TypographyScreen from '../../screens/typography';
 
-function ButtonPage() {
+function TypographyPage() {
   return (
     <div>
       <Head>
-        <title>Kaskus UI - Docs - Buttons</title>
+        <title>Kaskus UI - Docs - Typography</title>
         <meta name="description" content="UI by Kaskus" />
       </Head>
+
       <Layout>
-        <ButtonScreen />
+        <TypographyScreen />
       </Layout>
     </div>
   );
 }
 
-export default ButtonPage;
+export default TypographyPage;

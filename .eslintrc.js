@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   extends: [
+    'airbnb',
     'plugin:react/recommended',
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -39,6 +40,7 @@ module.exports = {
     'react/no-unescaped-entities': 'off',
     'react/sort-comp': 'off',
     'react/prop-types': 'off',
+    'react/no-array-index-key': 'off',
     'react/no-unused-state': 'off',
     'react/no-did-mount-set-state': 'off',
     'react/require-default-props': 'off',

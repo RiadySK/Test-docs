@@ -1,10 +1,12 @@
-import React, { ChangeEvent } from "react";
-import dynamic from "next/dynamic";
-import "@uiw/react-textarea-code-editor/dist.css";
+import React, { ChangeEvent } from 'react';
+import dynamic from 'next/dynamic';
+import '@uiw/react-textarea-code-editor/dist.css';
 
-const CodeEditor = dynamic((): any => import(
-  "@uiw/react-textarea-code-editor").then((mod) => mod.default),
-  { ssr: false }
+const CodeEditor = dynamic(
+  (): any => import(
+    '@uiw/react-textarea-code-editor'
+  ).then((mod) => mod.default),
+  { ssr: false },
 );
 
 interface CodeEditorComponentProps {
@@ -12,11 +14,10 @@ interface CodeEditorComponentProps {
   onChangeCode: (value: string) => void,
 }
 
-const CodeEditorComponent = (
-  {
-    code,
-    onChangeCode,
-  }: CodeEditorComponentProps) => {
+function CodeEditorComponent({
+  code,
+  onChangeCode,
+}: CodeEditorComponentProps) {
   return (
     <CodeEditor
       // @ts-ignore: (JSX attribute) value: string
@@ -29,8 +30,8 @@ const CodeEditorComponent = (
       padding={8}
       style={{
         fontSize: 12,
-        backgroundColor: "#f5f5f5",
-        fontFamily: "ui-monospace, monospace",
+        backgroundColor: '#f5f5f5',
+        fontFamily: 'ui-monospace, monospace',
       }}
     />
   );

@@ -1,6 +1,6 @@
-import React from 'react'
-import Header from './header'
-import Sidebar from './sidebar'
+import React from 'react';
+import Header from './header';
+import Sidebar from './sidebar';
 
 type MyProps = {
   children: React.ReactNode
@@ -17,5 +17,5 @@ export default function Layout({ children }: MyProps) {
         </main>
       </div>
     </>
-  )
+  );
 }

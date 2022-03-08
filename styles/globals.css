@@ -18,3 +18,13 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@font-face {
+  font-family: 'VAGRounded';
+  src: url('/assets/fonts/VAG-Rounded-Std.ttf');
+}
+@font-face {
+  font-family: 'VAGRounded';
+  font-weight: bold;
+  src: url('/assets/fonts/VAG-Rounded-Bold.ttf');
+}

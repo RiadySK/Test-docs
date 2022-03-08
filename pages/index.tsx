@@ -1,11 +1,8 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import React, { useState } from 'react'
+import Head from 'next/head';
+import React from 'react';
 import Layout from '../components/layout';
 
-const HomePage: NextPage = () => {
-  const [count, setCount] = useState(0);
-
+function HomePage() {
   return (
     <div>
       <Head>
@@ -20,7 +17,7 @@ const HomePage: NextPage = () => {
         </h1>
       </Layout>
     </div>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;
