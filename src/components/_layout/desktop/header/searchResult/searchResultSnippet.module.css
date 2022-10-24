@@ -1,0 +1,3 @@
+.searchResultSnippet {
+  @apply flex flex-col absolute top-10 z-20 w-full rounded-sm border border-grey-2 bg-white p-1 py-2 text-primary;
+}

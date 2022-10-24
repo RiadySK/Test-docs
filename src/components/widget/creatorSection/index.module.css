@@ -1,0 +1,3 @@
+.creatorSwiper :global(.swiper-slide){
+  @apply p-2
+}

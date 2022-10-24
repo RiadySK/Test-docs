@@ -1,0 +1,11 @@
+.notification-item {
+  @apply flex w-full border-b border-grey-3 bg-grey-1;
+}
+
+.notification-item:last-child {
+  @apply border-0;
+}
+
+.notification-drawer {
+  @apply lg:w-80;
+}

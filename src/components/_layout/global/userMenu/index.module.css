@@ -1,0 +1,7 @@
+.userMenu-item {
+  @apply flex w-full border-b border-grey-3;
+}
+
+.userMenu-item:last-child {
+  @apply border-0;
+}

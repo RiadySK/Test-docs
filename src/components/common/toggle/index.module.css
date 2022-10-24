@@ -1,0 +1,96 @@
+/* TODO */
+.toggle {
+  position: relative;
+  width: 35px;
+  height: 23px;
+}
+.toggle label input[type='checkbox'] {
+  display: none;
+}
+.toggle label input[type='checkbox'] + span {
+  border-radius: 34px;
+  width: 35px;
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 5px;
+  /* background-color: ${color["grey-2"]}; */
+  height: 14px;
+}
+.toggle label input[type='checkbox'] + span::before {
+  position: absolute;
+  content: '';
+  height: 18px;
+  width: 18px;
+  left: -2px;
+  bottom: -3px;
+  /* background-color: ${color.white}; */
+  transition: 0.4s;
+  /* border: 1px solid ${color["grey-2"]}; */
+  border-radius: 50%;
+  z-index: 1;
+}
+.toggle label input[type='checkbox']:disabled + span::before {
+  /* background-color: ${color["grey-4"]}; */
+  /* border: 1px solid ${color["grey-4"]}; */
+}
+.toggle label input[type='checkbox']:checked + span {
+  /* background-color: ${color.blueHover1}; */
+}
+.toggle label input[type='checkbox']:checked + span::before {
+  /* border-color: ${color.blue}; */
+  transform: translateX(18px);
+  /* background-color: ${color.blue}; */
+}
+.toggle label:hover {
+  cursor: pointer;
+}
+.toggle label:hover input[type='checkbox'] + i::before {
+  font-weight: 900;
+}
+.toggle span {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.toggle.nightmode label input[type='checkbox']:checked + span::before {
+  /* border-color: ${color.blueNight}; */
+  /* background-color: ${color.blueNight}; */
+}
+.toggle.nightmode label input[type='checkbox']:checked + span {
+  /* background-color: ${color.blueNightHover}; */
+}
+.toggle.nightmode label input[type='checkbox']:disabled + span::before {
+  /* background-color: ${color["grey-6"]}; */
+  /* border: 1px solid ${color["grey-6"]}; */
+}
+.toggle.nightmode label input[type='checkbox'] + span {
+  /* background-color: ${color["grey-5"]}; */
+}
+.toggle.nightmode label input[type='checkbox'] + span::before {
+  /* border: 1px solid ${color["grey-5"]}; */
+}
+.toggle svg {
+  position: absolute;
+  top: 50%;
+  height: 16px;
+  weight: 16px;
+  animation: spinning 1s infinite linear;
+}
+.toggle svg.left {
+  left: 0;
+}
+.toggle svg.right {
+  right: 0;
+}
+
+@keyframes spinning {
+  from {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateY(-50%) rotate(359deg);
+  }
+}

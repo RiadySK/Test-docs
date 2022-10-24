@@ -1,0 +1,31 @@
+.hotTopic {
+  @apply relative w-full py-4;
+}
+
+.hotTopicCardSlider:global(.swiper-slide) {
+  @apply pr-3;
+  width: 140px;
+  height: 180px;
+}
+
+.hotTopicArrowPrev,
+.hotTopicArrowNext {
+  @apply items-center invisible absolute inset-y-1/2 z-20 hidden h-10 w-10 -translate-y-1/2 cursor-pointer justify-center rounded-full bg-white shadow-md hover:opacity-50 lg:flex;
+}
+
+.hotTopicArrowPrev:global(.swiper-button-disabled),
+.hotTopicArrowNext:global(.swiper-button-disabled) {
+  @apply hidden;
+}
+
+.hotTopicArrowPrev {
+  @apply left-2;
+}
+
+.hotTopicArrowNext {
+  @apply right-2;
+}
+
+.hotTopicSwiper:global(.swiper) {
+  overflow: visible;
+}

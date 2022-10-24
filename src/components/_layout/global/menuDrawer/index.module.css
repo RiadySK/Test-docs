@@ -1,0 +1,28 @@
+.headerMenuDrawer {
+  width: calc(100vw - 8px);
+  max-height: calc(100vh - 60px);
+  top: 52px;
+  @apply fixed left-1 z-20 mt-1 hidden select-none rounded-lg shadow-sm lg:absolute lg:top-full lg:left-auto lg:right-0 lg:mt-2 lg:w-64;
+}
+
+.headerMenuDrawer::before {
+  content: '';
+  width: 0px;
+  height: 0px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 12px solid;
+  position: absolute;
+  top: -10px;
+  right: 16px;
+
+  @apply hidden border-b-white lg:right-3 lg:-top-2 lg:block;
+}
+
+:global(.dark) .headerMenuDrawer::before {
+  @apply border-b-grey-7;
+}
+
+.headerMenuDrawer.active {
+  @apply flex;
+}

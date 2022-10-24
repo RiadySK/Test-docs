@@ -1,0 +1,4 @@
+.overlay {
+  @apply fixed top-0 left-0 block h-full w-full;
+  background-color: rgba(0, 0, 0, 0.7);
+}

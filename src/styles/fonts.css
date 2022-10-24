@@ -1,0 +1,98 @@
+@font-face {
+  font-family: 'Font Awesome 5 Pro';
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: local('Font Awesome 5 Pro'),
+    url('/assets/fonts/fa-solid-900.woff2') format('woff2'),
+    url('/assets/fonts/fa-solid-900.woff') format('woff');
+}
+@font-face {
+  font-family: 'Font Awesome 5 Brands';
+  font-style: normal;
+  font-weight: normal;
+  font-display: block;
+  src: local('Font Awesome 5 Brands'),
+    url('/assets/fonts/fa-brands-400.woff2') format('woff2'),
+    url('/assets/fonts/fa-brands-400.woff') format('woff');
+}
+
+/* roboto-regular - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/roboto-v18-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Roboto'), local('Roboto-Regular'),
+    url('/assets/fonts/roboto-v18-latin-regular.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('/assets/fonts/roboto-v18-latin-regular.woff2')
+      format('woff2'),
+    /* Super Modern Browsers */
+      url('/assets/fonts/roboto-v18-latin-regular.woff') format('woff'),
+    /* Modern Browsers */ url('/assets/fonts/roboto-v18-latin-regular.ttf')
+      format('truetype'),
+    /* Safari, Android, iOS */
+      url('/assets/fonts/roboto-v18-latin-regular.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+
+/* roboto-500 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/roboto-v18-latin-500.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Medium'), local('Roboto-Medium'),
+    url('/assets/fonts/roboto-v18-latin-500.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('/assets/fonts/roboto-v18-latin-500.woff2')
+      format('woff2'),
+    /* Super Modern Browsers */ url('/assets/fonts/roboto-v18-latin-500.woff')
+      format('woff'),
+    /* Modern Browsers */ url('/assets/fonts/roboto-v18-latin-500.ttf')
+      format('truetype'),
+    /* Safari, Android, iOS */
+      url('/assets/fonts/roboto-v18-latin-500.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+
+/* roboto-700 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/roboto-v18-latin-700.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Bold'), local('Roboto-Bold'),
+    url('/assets/fonts/roboto-v18-latin-700.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('/assets/fonts/roboto-v18-latin-700.woff2')
+      format('woff2'),
+    /* Super Modern Browsers */ url('/assets/fonts/roboto-v18-latin-700.woff')
+      format('woff'),
+    /* Modern Browsers */ url('/assets/fonts/roboto-v18-latin-700.ttf')
+      format('truetype'),
+    /* Safari, Android, iOS */
+      url('/assets/fonts/roboto-v18-latin-700.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+  font-family: 'VagRoundedBold';
+  src: url('/assets/fonts/VAG_Rounded_Bold.ttf');
+}
+
+@font-face {
+  font-family: 'vag_roundedbold';
+  src: url('/assets/fonts/vag_rounded_bold-webfont.eot');
+  src: url('/assets/fonts/vag_rounded_bold-webfont.eot?#iefix')
+      format('embedded-opentype'),
+    url('/assets/fonts/vag_rounded_bold-webfont.woff2') format('woff2'),
+    url('/assets/fonts/vag_rounded_bold-webfont.woff') format('woff'),
+    url('/assets/fonts/vag_rounded_bold-webfont.ttf') format('truetype'),
+    url('/assets/fonts/vag_rounded_bold-webfont.svg#vag_roundedbold')
+      format('svg');
+  font-weight: normal;
+  font-display: swap;
+  font-style: normal;
+}

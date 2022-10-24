@@ -1,0 +1,5 @@
+.loginModal {
+  @apply rounded-md p-2;
+  width: 765px;
+  background-color: #e4f8f6;
+}

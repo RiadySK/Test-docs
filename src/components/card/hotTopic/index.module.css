@@ -1,0 +1,32 @@
+.hotTopicCardFrame {
+  width: 128px;
+  height: 168px;
+}
+
+.hotTopicCardFrame {
+  @apply relative block pl-2 pt-2;
+}
+
+.hotTopicCardFrame::before,
+.hotTopicCardFrame::after,
+.hotTopicCardFrame img {
+  width: 120px;
+  height: 160px;
+}
+
+.hotTopicCardFrame::before,
+.hotTopicCardFrame::after {
+  content: " ";
+}
+
+.hotTopicCardFrame::before {
+  @apply absolute top-0 left-0 bg-grey-2;
+}
+
+.hotTopicCardFrame::after {
+  @apply absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-grey-1;
+}
+
+.hotTopicCardFrame img {
+  @apply absolute bottom-0 right-0 z-10 object-cover;
+}

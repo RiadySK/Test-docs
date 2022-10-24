@@ -1,0 +1,74 @@
+.channelBar {
+  @apply sticky top-0 z-40 mt-0 flex w-full pl-1 shadow-sm lg:pl-0;
+}
+
+.channelBar.stucked {
+  top: 53px;
+}
+
+.channelBar-container {
+  @apply flex w-full max-w-full items-center py-1 lg:mx-auto lg:w-auto lg:py-0;
+}
+
+.channel-link {
+  @apply inline-block p-2 text-xs font-medium lg:p-4 lg:text-xs;
+  @apply bg-grey-5 transition-all ease-linear;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.channel-link:hover,
+.channel-link.active {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-color: var(--channel-accent-color);
+  box-shadow: 0px 3px 0px -2px var(--channel-accent-color);
+}
+
+.channelBar-communities {
+  @apply relative z-10;
+}
+/* test click instead hover community list */
+/* 
+.channelBar-communities::before {
+  @apply absolute left-0 w-full lg:-bottom-2 lg:h-2;
+  content: '';
+} */
+
+.channelBar-communitiesButton {
+  @apply relative z-10 flex flex-shrink-0 cursor-pointer items-center rounded-lg py-2 pl-4 pr-2 text-xs font-normal;
+}
+
+.channelBar-communitiesDrawer {
+  width: calc(100vw - 8px);
+  max-height: calc(100vh - 60px);
+  @apply absolute left-0 top-full z-20 mt-1 hidden rounded-lg pt-2 pb-4 shadow-sm lg:mt-2 lg:w-64;
+}
+
+.channelBar-communitiesDrawer.active {
+  @apply flex;
+}
+
+/* test click instead hover community list */
+/* .channelBar-communities:hover > .channelBar-communitiesDrawer,
+.channelBar-communitiesDrawer:hover {
+  @apply flex;
+} */
+
+.channelBar-communitiesDrawer kaskus-button {
+  @apply w-full;
+}
+
+/* test click instead hover community list */
+/* 
+.channelBar-communities:hover + .channelBar-communitiesDrawerOverlay {
+  @apply pointer-events-none block;
+} */
+
+.channelBar-communitiesListItem {
+  @apply flex w-full text-sm font-normal lg:text-xs;
+}
+
+.channelBar-communitiesListItem a {
+  @apply flex w-full py-2 pl-9 pr-2;
+}
