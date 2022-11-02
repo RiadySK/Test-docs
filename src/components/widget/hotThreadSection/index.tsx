@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from 'react'
+import { Fragment, ReactNode, useEffect, useState } from 'react'
 
 import HotThreadCard from 'components/card/thread'
 import SectionHeader from 'components/common/sectionHeader'
@@ -39,34 +39,29 @@ const HotThreadSection = ({
     if (displayType == localStorageDisplayType) return
     setLocalStorageCardDisplay(displayType)
   }, [displayType])
-  const hotThreadStream: (ReactNode | JSX.Element)[] = []
 
-  data?.data.forEach((card, index) => {
-    const key = `${card.id} + ${index}`
-    const template = (
-      <HotThreadCard
-        className="mb-4"
-        item={card}
-        key={key}
-        cardType={cardTypes[Math.floor(Math.random() * cardTypes.length)]}
-        displayType={
-          isThumbnail ? CardDisplayType.THUMBNAIL : CardDisplayType.COMPACT
-        }
-      />
-    )
-    switch (index) {
-      case 5:
-        hotThreadStream.push(HotTopicsComponent)
-        break
+  const renderHotThreadStream = (): ReactNode => {
+    if (!data?.data.length) return null
 
-      case 11:
-        hotThreadStream.push(CommunitySectionComponent)
-        break
-      default:
-        break
-    }
-    hotThreadStream.push(template)
-  })
+    return data?.data.map((thread, index) => {
+      const key = `${thread.id} + ${index}`
+
+      return (
+        <Fragment key={key}>
+          <HotThreadCard
+            className="mb-4"
+            item={thread}
+            cardType={cardTypes[Math.floor(Math.random() * cardTypes.length)]}
+            displayType={
+              isThumbnail ? CardDisplayType.THUMBNAIL : CardDisplayType.COMPACT
+            }
+          />
+          {index === 5 && HotTopicsComponent}
+          {index === 11 && CommunitySectionComponent}
+        </Fragment>
+      )
+    })
+  }
 
   return (
     <>
@@ -79,7 +74,7 @@ const HotThreadSection = ({
         />
         <SwitchThumbnail isThumbnail={isThumbnail} onChange={setThumbnail} />
       </div>
-      {!isLoading && hotThreadStream.map((card) => card)}
+      {renderHotThreadStream()}
       {!isLoading && (
         <LoadMoreContextProvider
           className="p-2"

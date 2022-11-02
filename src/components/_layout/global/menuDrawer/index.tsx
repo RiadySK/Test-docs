@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { ReactNode } from 'react'
+import { ReactElement, ReactNode } from 'react'
 import styles from './index.module.css'
 
 interface HeaderMenuDrawerProps {
@@ -12,7 +12,7 @@ const HeaderMenuDrawer = ({
   isShow,
   children,
   className,
-}: HeaderMenuDrawerProps) => {
+}: HeaderMenuDrawerProps): ReactElement => {
   return (
     <>
       <div

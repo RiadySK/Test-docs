@@ -57,12 +57,7 @@ export const cardItem: Thread = {
   description: 'lekas sembuh keluarga lukas',
   thumbnail: {
     url: 'http://placekitten.com/400/400',
-    name: 'keluarga lukas',
     is_censored: false,
-    meta: {
-      width: 400,
-      height: 400,
-    },
   },
   community: {
     id: 21,

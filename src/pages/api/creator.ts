@@ -5,12 +5,7 @@ import { ThreadBasic } from 'types/thread'
 
 const image: Image = {
   url: 'http://placekitten.com/200/200',
-  name: 'Kucing 200',
   is_censored: false,
-  meta: {
-    width: 200,
-    height: 200,
-  },
 }
 
 const threadList: ThreadBasic[] = [

@@ -17,6 +17,7 @@ import { useCommunityChannel, useMyCommunity } from 'services/community'
 import { useCreatorMock } from 'services/kreator'
 import { useHotThreads } from 'services/hotThread'
 import { CardDisplayType } from 'types/hotThread'
+import Ads, { DFP_MOBILE_HOME } from 'components/ads'
 
 const HomeMobile: NextPage = () => {
   const {
@@ -35,7 +36,16 @@ const HomeMobile: NextPage = () => {
 
   return (
     <Layout>
-      <div className="my-4 h-24 w-full bg-slate-500">ADS Leaderboard</div>
+      <Ads
+        ad_unit={DFP_MOBILE_HOME.DFP_MOBILE_HOME_LEADERBOARD.ad_unit}
+        placement={DFP_MOBILE_HOME.DFP_MOBILE_HOME_LEADERBOARD.placement}
+        pos={DFP_MOBILE_HOME.DFP_MOBILE_HOME_LEADERBOARD.pos}
+        sizes={DFP_MOBILE_HOME.DFP_MOBILE_HOME_LEADERBOARD.sizes}
+        kaskus_dfp_channel={
+          DFP_MOBILE_HOME.DFP_MOBILE_HOME_LEADERBOARD.kaskus_dfp_channel
+        }
+        className="mt-4 w-full"
+      ></Ads>
       <main className="w-full">
         <>
           {!communityIsLoading && communityData && communityData.data && (
@@ -52,7 +62,16 @@ const HomeMobile: NextPage = () => {
             />
           )}
         </>
-        <div className="mx-auto h-64 w-300p bg-slate-500">ADS 300x250</div>
+        <Ads
+          ad_unit={DFP_MOBILE_HOME.DFP_MOBILE_HOME_MIDDLE1.ad_unit}
+          placement={DFP_MOBILE_HOME.DFP_MOBILE_HOME_MIDDLE1.placement}
+          pos={DFP_MOBILE_HOME.DFP_MOBILE_HOME_MIDDLE1.pos}
+          sizes={DFP_MOBILE_HOME.DFP_MOBILE_HOME_MIDDLE1.sizes}
+          kaskus_dfp_channel={
+            DFP_MOBILE_HOME.DFP_MOBILE_HOME_MIDDLE1.kaskus_dfp_channel
+          }
+          className="mt-4 w-full"
+        ></Ads>
         {!hotThreadLoading &&
           hotThreadData?.data &&
           hotThreadData.data.map((obj: Thread, index: number) => {
@@ -85,6 +104,16 @@ const HomeMobile: NextPage = () => {
             <LoadingSpinner />
           </LoadMoreContextProvider>
         )}
+        <Ads
+          ad_unit={DFP_MOBILE_HOME.DFP_MOBILE_HOME_BOTTOM.ad_unit}
+          placement={DFP_MOBILE_HOME.DFP_MOBILE_HOME_BOTTOM.placement}
+          pos={DFP_MOBILE_HOME.DFP_MOBILE_HOME_BOTTOM.pos}
+          sizes={DFP_MOBILE_HOME.DFP_MOBILE_HOME_BOTTOM.sizes}
+          kaskus_dfp_channel={
+            DFP_MOBILE_HOME.DFP_MOBILE_HOME_BOTTOM.kaskus_dfp_channel
+          }
+          className="mt-4 w-full"
+        ></Ads>
       </main>
     </Layout>
   )

@@ -15,6 +15,17 @@ export interface ThreadBasic {
   thumbnail: Image,
 }
 
+export interface ThreadRecommendation {
+  id: string,
+  title: string,
+  thread_type: number,
+  community: {
+    id: string,
+    name: string,
+  },
+  thumbnail: Image | null
+}
+
 export interface Thread extends ThreadBasic {
   id: string,
   slug: string,

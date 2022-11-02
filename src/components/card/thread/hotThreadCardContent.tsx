@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import { PARAMS_ROUTES, URL_THREAD_DETAIL } from 'constant/routes'
 import { CardDisplayType } from 'types/hotThread'
 import HotThreadCardImage from './hotThreadCardImage'
 import HotThreadCardVideo from './hotThreadCardVideo'
@@ -22,7 +23,10 @@ export default function HotThreadCardContent({
   displayType,
   cardType,
 }: Props) {
-  const url = `/thread/${id}/${slug}`
+  const url = URL_THREAD_DETAIL.replace(PARAMS_ROUTES.ID, id).replace(
+    PARAMS_ROUTES.SLUG,
+    slug,
+  )
 
   return displayType && displayType == CardDisplayType.THUMBNAIL ? (
     <>

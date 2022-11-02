@@ -5,7 +5,7 @@ interface Props {
   placement: string
   kaskus_dfp_channel: string
   sizes: number[][]
-  size_mapping?: number[][]
+  // size_mapping?: number[][] size_mapping is disabled due kaskus ad_unit not use it currently
   pos: string
   list_type?: string
   adx_permission?: boolean
@@ -15,7 +15,7 @@ interface Props {
 const Ads = ({
   ad_unit,
   sizes,
-  size_mapping,
+  // size_mapping, size_mapping is disabled due kaskus ad_unit not use it currently
   placement,
   pos,
   list_type,
@@ -24,8 +24,7 @@ const Ads = ({
   className,
 }: Props) => {
   useEffect(() => {
-    if (!window) return
-    if (!ad_unit.length) return
+    if (!window || !ad_unit.length) return
 
     window.googletag = window.googletag || { cmd: [] }
 
@@ -45,10 +44,11 @@ const Ads = ({
       googletag.enableServices()
     })
 
-    setTimeout(() => {
-      googletag.display(placement)
+    setTimeout(async () => {
+      ;(await googletag) && googletag.display(placement)
     }, 300)
   }, [ad_unit])
+
   return <div id={placement} className={className}></div>
 }
 

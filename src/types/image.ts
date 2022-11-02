@@ -1,9 +1,4 @@
 export interface Image {
-  url: string
-  name: string
-  is_censored: boolean
-  meta: {
-    width: number
-    height: number
-  }
+  url: string,
+  is_censored: boolean,
 }

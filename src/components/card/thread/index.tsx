@@ -28,6 +28,10 @@ const HotThreadCard = ({ item, className, displayType, cardType }: Props) => {
     alert('Reply count clicked')
   }
 
+  const handleJoinCommunity = () => {
+    alert('Join community clicked')
+  }
+
   return (
     <div
       className={classNames(
@@ -36,12 +40,15 @@ const HotThreadCard = ({ item, className, displayType, cardType }: Props) => {
       )}
     >
       <HotThreadCardHeader
+        communityId={item.community.id}
         communityIcon={item.community.icon}
         communityName={item.community.name}
+        userId={item.post.user.userid}
         displayName={item.post.user.display_name}
         dateline={item.post.dateline}
         membershipStatus={item.community.membership_status}
         cardType={cardType}
+        onClickJoinCommunity={handleJoinCommunity}
       />
       <HotThreadCardContent
         id={item.id}

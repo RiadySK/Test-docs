@@ -7,30 +7,15 @@ import { Thread, ThreadType } from '../../types/thread'
 const imageList: Image[] = [
   {
     url: 'http://placekitten.com/200/200',
-    name: 'Kucing 200',
     is_censored: false,
-    meta: {
-      width: 200,
-      height: 200,
-    },
   },
   {
     url: 'http://placekitten.com/300/300',
-    name: 'Kucing 300',
     is_censored: true,
-    meta: {
-      width: 300,
-      height: 300,
-    },
   },
   {
     url: 'http://placekitten.com/400/400',
-    name: 'Kucing 400',
     is_censored: false,
-    meta: {
-      width: 400,
-      height: 400,
-    },
   },
 ]
 

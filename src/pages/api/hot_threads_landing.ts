@@ -7,30 +7,19 @@ import { Thread, ThreadType } from '../../types/thread'
 const imageList: Image[] = [
   {
     url: 'http://placekitten.com/200/200',
-    name: 'Kucing 200',
     is_censored: false,
-    meta: {
-      width: 200,
-      height: 200,
-    },
   },
   {
     url: 'http://placekitten.com/300/300',
-    name: 'Kucing 300',
     is_censored: true,
-    meta: {
-      width: 300,
-      height: 300,
-    },
   },
   {
     url: 'http://placekitten.com/400/400',
-    name: 'Kucing 400',
     is_censored: false,
-    meta: {
-      width: 400,
-      height: 400,
-    },
+  },
+  {
+    url: 'https://s.kaskus.id/images/2022/11/02/10554366_202211020540530364.jpg',
+    is_censored: false,
   },
 ]
 
@@ -39,9 +28,9 @@ const postList: Post[] = [
     post_id: 'postid001',
     dateline: 1665727764,
     user: {
-      userid: 873701,
-      username: 'siKacangRenyah',
-      display_name: 'Kacang Renyah Bergizi',
+      userid: 10554366,
+      username: 'masnukkho',
+      display_name: 'masnukkho',
     },
     vote_info: {
       total_vote: 89412,
@@ -91,15 +80,15 @@ const postList: Post[] = [
 
 const threadList: Thread[] = [
   {
-    id: 'mockId1',
-    slug: 'siput nomor 1',
-    title: 'Hot Thread is Hot 1',
-    description: 'Lorem ipsum dolor sit amet, sed do et magna aliqua.',
-    thumbnail: imageList[Math.floor(Math.random() * 3)]!,
+    id: '6361a9e3f630e03baf005a4f',
+    slug: 'unik-dan-berbeda-berikut-ini-beberapa-komunitas-yang-bisa-disebut-tidak-biasa',
+    title: 'Unik dan Berbeda, Berikut Ini Beberapa Komunitas yang Bisa Disebut Tidak Biasa',
+    description: 'Komunitas, seperti yang Agan dan Sista ketahui merupakan sekelompok orang yang berkumpul dalam satu wadah untuk menjalankan sebuah hobi, kegemaran, atau ketertarikan terhadap suatu hal.',
+    thumbnail: imageList[3]!,
     community: {
-      id: 23,
-      name: 'komunitas bersama',
-      icon: 'https://s.kaskus.id/ficon/image-9.png',
+      id: 392,
+      name: 'Hobby & Community',
+      icon: 'https://s.kaskus.id/r60x60/ficon/image-392.png',
       membership_status: 0,
     },
     meta: {
@@ -109,7 +98,7 @@ const threadList: Thread[] = [
     },
     is_subscribed: true,
     thread_type: ThreadType.TEXT,
-    post: postList[Math.floor(Math.random() * 4)]!,
+    post: postList[0]!,
     content: {
       content: 'Content tipe text'
     }
