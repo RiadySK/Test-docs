@@ -4,17 +4,17 @@ import { Community, CommunityChannelVariant } from 'types/community'
 
 const KomunitasList: Community[] = [
   {
-    id: '1',
-    description: 'Kucing hitam',
-    icon: 'http://placekitten.com/100/100',
+    id: '1064',
+    description: 'Perkumpulang orang-orang Scooter Matic',
+    icon: 'https://s.kaskus.id/ficon/image-1064.png',
     membership_status: 1,
     meta: {
       total_member: 2000,
       total_post: 200,
       total_thread: 20,
     },
-    name: 'hahahaha',
-    slug: 'tertawa',
+    name: 'Scooter Matic',
+    slug: 'scooter-matic',
   },
   {
     id: '11',

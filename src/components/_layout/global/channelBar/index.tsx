@@ -1,7 +1,9 @@
 import classNames from 'classnames'
 import { useEffect, useRef, useState } from 'react'
+
 import ChannelBarCommunities from './communities'
 import styles from './index.module.css'
+import { URL_CHANNEL_LANDING, PARAMS_ROUTES } from 'constant/routes'
 
 const ChannelBar = () => {
   const channelBarRef = useRef(null)
@@ -39,7 +41,7 @@ const ChannelBar = () => {
                 style={
                   { '--channel-accent-color': '#0082c6' } as React.CSSProperties
                 }
-                href="/channel/foryou"
+                href={URL_CHANNEL_LANDING.replace(PARAMS_ROUTES.ID, 'foryou')}
               >
                 FOR YOU
               </a>
@@ -50,7 +52,7 @@ const ChannelBar = () => {
                 style={
                   { '--channel-accent-color': '#6d899f' } as React.CSSProperties
                 }
-                href="/chanp-2nel/1/story"
+                href={URL_CHANNEL_LANDING.replace(PARAMS_ROUTES.ID, '1')}
               >
                 Story
               </a>
@@ -61,7 +63,7 @@ const ChannelBar = () => {
                 style={
                   { '--channel-accent-color': '#f6927a' } as React.CSSProperties
                 }
-                href="/chanp-2nel/2/hobby"
+                href={URL_CHANNEL_LANDING.replace(PARAMS_ROUTES.ID, '2')}
               >
                 Hobby
               </a>
@@ -72,7 +74,7 @@ const ChannelBar = () => {
                 style={
                   { '--channel-accent-color': '#8b3d88' } as React.CSSProperties
                 }
-                href="/channel/3/games"
+                href={URL_CHANNEL_LANDING.replace(PARAMS_ROUTES.ID, '3')}
               >
                 Games
               </a>
@@ -83,7 +85,7 @@ const ChannelBar = () => {
                 style={
                   { '--channel-accent-color': '#e3ac51' } as React.CSSProperties
                 }
-                href="/channel/4/entertainment"
+                href={URL_CHANNEL_LANDING.replace(PARAMS_ROUTES.ID, '4')}
               >
                 Entertainment
               </a>
@@ -94,7 +96,7 @@ const ChannelBar = () => {
                 style={
                   { '--channel-accent-color': '#ed84a5' } as React.CSSProperties
                 }
-                href="/channel/10/female"
+                href={URL_CHANNEL_LANDING.replace(PARAMS_ROUTES.ID, '10')}
               >
                 Female
               </a>
@@ -105,7 +107,7 @@ const ChannelBar = () => {
                 style={
                   { '--channel-accent-color': '#4666af' } as React.CSSProperties
                 }
-                href="/channel/6/tech"
+                href={URL_CHANNEL_LANDING.replace(PARAMS_ROUTES.ID, '6')}
               >
                 Tech
               </a>
@@ -116,7 +118,7 @@ const ChannelBar = () => {
                 style={
                   { '--channel-accent-color': '#5a5a5a' } as React.CSSProperties
                 }
-                href="/channel/7/automotive"
+                href={URL_CHANNEL_LANDING.replace(PARAMS_ROUTES.ID, '7')}
               >
                 Automotive
               </a>
@@ -127,7 +129,7 @@ const ChannelBar = () => {
                 style={
                   { '--channel-accent-color': '#ce6c47' } as React.CSSProperties
                 }
-                href="/channel/8/sports"
+                href={URL_CHANNEL_LANDING.replace(PARAMS_ROUTES.ID, '8')}
               >
                 Sports
               </a>
@@ -138,7 +140,7 @@ const ChannelBar = () => {
                 style={
                   { '--channel-accent-color': '#51ae5e' } as React.CSSProperties
                 }
-                href="/channel/9/food--travel"
+                href={URL_CHANNEL_LANDING.replace(PARAMS_ROUTES.ID, '9')}
               >
                 Food &amp; Travel
               </a>
@@ -149,7 +151,7 @@ const ChannelBar = () => {
                 style={
                   { '--channel-accent-color': '#dc404e' } as React.CSSProperties
                 }
-                href="/channel/5/news"
+                href={URL_CHANNEL_LANDING.replace(PARAMS_ROUTES.ID, '5')}
               >
                 News
               </a>
