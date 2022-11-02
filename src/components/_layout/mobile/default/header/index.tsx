@@ -1,16 +1,16 @@
 import { ReactElement, useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 import { useBodyTheme } from 'contexts/theme'
-import SearchResult from './searchResult'
-import NavigationDrawer from './navigationDrawer'
 import UserMenu from 'components/_layout/global/userMenu'
 import UserNotification from 'components/_layout/global/userNotification'
+import LoginModal from 'components/_layout/global/loginModal'
+import Search from './search'
+import NavigationDrawer from './navigationDrawer'
 
 const Header = (): ReactElement => {
   const { theme } = useTheme()
   const { isNight } = useBodyTheme()
   const [logoURL, setLogoUrl] = useState<string>('logo-kaskus-white.png')
-  const [isShowSearchResult, setShowSearchResult] = useState<boolean>(false)
 
   useEffect(() => {
     if (!theme) return
@@ -36,28 +36,16 @@ const Header = (): ReactElement => {
             </div>
           </div>
           <div className="flex items-center">
-            <span
-              onClick={() => {
-                setShowSearchResult((isShowSearchResult) => !isShowSearchResult)
-              }}
-            >
-              <kaskus-icon
-                size="medium"
-                variant={isShowSearchResult ? 'times' : 'search'}
-              ></kaskus-icon>
-            </span>
             {/* <span className="mr-1 text-sm dark:text-white">
-              <kaskus-button text="Masuk" variant="primary"></kaskus-button>
+              <Button type="blue">Masuk</Button>
             </span> */}
+            <Search />
+            <LoginModal />
             {/* if Login */}
             <UserNotification />
             <UserMenu />
           </div>
         </div>
-        <SearchResult
-          isShow={isShowSearchResult}
-          onClose={() => setShowSearchResult(false)}
-        />
       </div>
     </>
   )

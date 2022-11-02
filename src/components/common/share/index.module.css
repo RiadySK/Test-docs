@@ -1,0 +1,36 @@
+.sharer-icon {
+  @apply overflow-visible;
+}
+
+.sharer-container {
+  padding: 1px;
+}
+
+.right {
+  @apply left-0 right-auto;
+}
+
+.left {
+  @apply right-0 left-auto flex-row-reverse;
+}
+
+.up {
+  @apply top-auto left-1/2;
+  bottom: calc(100% + 1px);
+  transform: translate(-50%, 0px);
+}
+
+.down {
+  @apply left-1/2 bottom-auto;
+  top: calc(100% + 1px);
+  transform: translate(-50%, 0px);
+}
+
+.up ul,
+.down ul {
+  @apply flex-col;
+}
+
+.share-item {
+  @apply flex cursor-pointer items-center rounded-sm px-2 py-1 hover:bg-grey-2 dark:bg-grey-7;
+}

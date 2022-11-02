@@ -1,10 +1,10 @@
 import classNames from 'classnames'
-import { ReactElement } from 'react'
+import { ReactNode } from 'react'
 import styles from './index.module.css'
 
 interface HeaderMenuDrawerProps {
   isShow: boolean
-  children: ReactElement
+  children: ReactNode
   className?: string
 }
 
@@ -12,7 +12,7 @@ const HeaderMenuDrawer = ({
   isShow,
   children,
   className,
-}: HeaderMenuDrawerProps): ReactElement => {
+}: HeaderMenuDrawerProps) => {
   return (
     <>
       <div

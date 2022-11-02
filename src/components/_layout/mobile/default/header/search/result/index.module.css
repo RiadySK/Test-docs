@@ -1,0 +1,16 @@
+.searchResultModal {
+  @apply absolute left-0 z-10 h-0 w-full overflow-hidden ease-in-out sm:max-w-lg;
+  transition: height 0.5s;
+  top: 52px;
+}
+
+.searchResultModal.active {
+  @apply ease-in-out;
+  height: calc(100vh - 52px);
+  transition: height 0.5s;
+}
+
+.searchResultModalBody {
+  overflow-y: auto;
+  max-height: calc(100vh - 52px - 60px - 1px);
+}

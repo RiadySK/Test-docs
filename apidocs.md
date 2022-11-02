@@ -39,25 +39,28 @@ Example full URL: `www.kaskus.local/api/hot_threads`
 applicable base URL so the set cookies work correctly.
 
 ## No-Auth Routes
-|                 Name | Endpoint             |   Status    |   Notes   | Return Type                       |
-|---------------------:|:---------------------|:-----------:|:---------:|-----------------------------------|
-|          Hot Threads | /hot_threads         | In-Progress |  Pending  | [HotThreadList](#hot-thread-list) |
-|       Komunitas Baru | /communities/new     | In-Progress |           |                                   |
-|           Hot Topics | -                    |   Not Yet   |           |                                   |
-|    Komunitas Populer | /communities/popular | In-Progress |           |                                   |
-|      KaskusTV Widget | -                    |   Not Yet   |           |                                   |
-|               Search | -                    |   Not Yet   |           |                                   | 
-|      Header Channels | -                    |   Not Yet   |           |                                   |
-| Pencarian Terpopuler | -                    |   Not Yet   |           |                                   |
+|                 Name | Method | Endpoint                             |  Status BE  |   Frontend Integration   |              Notes               | Return Type                                         |
+|---------------------:|:------:|:-------------------------------------|:-----------:|:------------------------:|:--------------------------------:|-----------------------------------------------------|
+|   Hot Thread Landing |  GET   | /hot_threads_landing                 |    Done     | <ul><li>[x] OK</li></ul> |                                  | [HotThreadList](#hotthreadlist)                     |
+|          Hot Threads |  GET   | /hot_threads?channel_id&limit&cursor |    Done     | <ul><li>[x] OK</li></ul> |                                  | [HotThreadListWithCursor](#hotthreadlistwithcursor) |
+|       Komunitas Baru |  GET   | /communities/{channel_id}/new        |    Done     | <ul><li>[x] OK</li></ul> |                                  | [Community](#community)[]                           |
+|           Hot Topics |  GET   | /hot_topics?status&cursor&limit      |    Done     | <ul><li>[ ] OK</li></ul> |                                  | [HotTopicFeed](#hottopicfeed)                       |
+|    Komunitas Populer |  GET   | /communities/{channel_id}/popular    |    Done     | <ul><li>[x] OK</li></ul> | No `description` or `total_post` | [Community](#community)[]                           |
+|      KaskusTV Widget |  GET   | /channel/{channel_id}/kaskustv       |    Done     | <ul><li>[x] OK</li></ul> |                                  | [Kaskus TV](#kaskus-tv)                             |
+|               Search |  GET   | /search                              | In-Progress | <ul><li>[ ] OK</li></ul> |                                  |                                                     | 
+|      Header Channels |  GET   | /channel/channel_header              |    Done     | <ul><li>[x] OK</li></ul> |                                  | [Channel](#channel)[]                               |
+| Pencarian Terpopuler |  GET   | /search/popular                      |    Done     | <ul><li>[x] OK</li></ul> |                                  | [Search](#search)                                   |
 
 ## Auth Routes
-|                   Name | Endpoint             |   Status    |               Notes               | Return Type                            |
-|-----------------------:|:---------------------|:-----------:|:---------------------------------:|----------------------------------------|
-|         Komunitas Saya | -                    |   Not Yet   |                                   |                                        |
-|     Thread Rekomendasi | -                    |   Not Yet   |                                   |                                        |
-|       User Information | /user                |    Done     |       Meta not included yet       |                                        |
-|           Notification | /notifications       |    Done     | Only unread PM, FJB stats pending | [NotificationList](#notification-list) |
-| Upvote/downvote thread | -                    |   Not Yet   |                                   |                                        |
+|                   Name | Method | Endpoint                                         | Status BE |   Frontend Integration   |                      Notes                      | Return Type                                      |
+|-----------------------:|:------:|:-------------------------------------------------|:---------:|:------------------------:|:-----------------------------------------------:|--------------------------------------------------|
+|         Komunitas Saya |  GET   | /user/communities?limit                          |   Done    | <ul><li>[x] OK</li></ul> |        Page query param not working yet         | [Community](#community)[]                        |
+|     Thread Rekomendasi |  GET   | /channels/{channel_id}/recommendation            |   Done    | <ul><li>[ ] OK</li></ul> | No such data in local/staging, pending for last | [ThreadRecommendation](#thread-recommendation)[] |
+|       User Information |  GET   | /user                                            |   Done    | <ul><li>[x] OK</li></ul> |              Meta not included yet              | [User](#user)                                    |
+|           Notification |  GET   | /notifications?offset&type&limit&displayed_state |   Done    | <ul><li>[x] OK</li></ul> |        Only unread PM, FJB stats pending        | [NotificationList](#notification-list)           |
+|             Get Banner |  GET   | /banners                                         |   Done    | <ul><li>[ ] OK</li></ul> |                                                 | [Banner](#banner)                                |
+| Upvote/downvote thread |  POST  | /threads/{thread_id}/vote                        |  Not Yet  | <ul><li>[ ] OK</li></ul> |                                                 |                                                  |
+|   Join/Leave Community |  POST  | /communities/{community_id}/join                 |  Not Yet  | <ul><li>[ ] OK</li></ul> |                                                 |                                                  |
 
 ## Object Breakdowns
 
@@ -68,29 +71,127 @@ enum ThreadType:
 * 2: `IMAGE`
 * 3: `VIDEO`
 
+### HotThreadList
+```ts
+data: [Thread];
+```
+
+### HotThreadListWithCursor
+```ts
+data: [Thread];
+meta: {
+  cursor: string;
+}
+```
+
 ### Thread
 ```ts
 {
-  id: string,
-  slug: string,
-  title: string,
-  description: string, // ku cek ini motong dari text content // tapi bisa direplace sama tim konten saat naekin thread jadi hot_thread - Riady 
-  thumbnail: Image,
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  thumbnail: Image;
   community: {
-    id: int,
-    name: string,
-    icon: string,
-    membership_status: number
-  },
+    id: int;
+    name: string;
+    icon: string;
+    membership_status: number;
+  };
   meta: {
-    rating: number,
-    total_views: number,
-    reply_count: number
-  },
-  is_subscribed: boolean,
-  thread_type: ThreadType,
-  first_post: Post,
-  content: TextContent | ImageContent | VideoContent 
+    rating: number;
+    total_views: number;
+    reply_count: number;
+  };
+  is_subscribed: boolean;
+  thread_type: ThreadType;
+  post: Post;
+  content: TextContent | ImageContent | VideoContent;
+}
+```
+
+### Thread Recommendation
+
+Example call: http://www.kaskus.local/api/channel/0/recommendation
+
+**Parameters:**
+* `channel_id`: number determining Channel ID (required)
+* `width_compact`: preferred thumbnail width (optional)
+
+**Note that the response is a subset of [Thread](#thread) and [Community](#community) respectively.
+They _are_ compatible with those entities, except the data is not as complete as the full entity**.
+
+**Response:**
+```ts
+{
+  id: string;
+  title: string;
+  thread_type: number;
+  community: {
+    id: string;
+    name: string;
+  };
+  thumbnail: {
+    url: string;
+    is_censored: bool;
+  };
+}
+```
+
+**Example Response:**
+```json
+{
+  "data": [
+    {
+      "id": "634bb67f89e4760d2658f575",
+      "title": "test text",
+      "thread_type": 1,
+      "community": {
+        "id": "431",
+        "name": "Anime"
+      },
+      "thumbnail": null
+    },
+    {
+      "id": "6336ba9a652f1760057e13ae",
+      "title": "asdaa",
+      "thread_type": 3,
+      "community": {
+        "id": "431",
+        "name": "Anime"
+      },
+      "thumbnail": {
+        "url": "https://www.kaskus.local/c720x720/images/2022/09/08/3_20220908043954.jpg",
+        "is_censored": false
+      }
+    },
+    {
+      "id": "634bb6d3cbc59f480c495dd9",
+      "title": "test image",
+      "thread_type": 3,
+      "community": {
+        "id": "431",
+        "name": "Anime"
+      },
+      "thumbnail": {
+        "url": "https://www.kaskus.local/c720x720/images/2022/10/16/3_20221016024610.png",
+        "is_censored": false
+      }
+    },
+    {
+      "id": "632426d1bd7cb431a96a9847",
+      "title": "asdaa",
+      "thread_type": 2,
+      "community": {
+        "id": "431",
+        "name": "Anime"
+      },
+      "thumbnail": {
+        "url": "http://c-staging.kaskus.id/c720x720/media/videos/thumbnail/vcopo_thumbnail.jpg",
+        "is_censored": false
+      }
+    }
+  ]
 }
 ```
 
@@ -121,10 +222,11 @@ enum ThreadType:
 ### ImageContent
 ```ts
 {
-  images: Image[],
+  images: [string];
+  description: string
   aspect_ratio: {
-    ratio_width: number,
-    ratio_height: number
+    ratio_width: number;
+    ratio_height: number;
   }
 }
 ```
@@ -132,11 +234,12 @@ enum ThreadType:
 ### VideoContent
 ```ts
 {
-  video_url: string
+  video_url: string;
+  description: string;
 }
 ```
 
-### ~ThreadFeed~
+### ~~ThreadFeed~~
 ```ts
 {
   items: Threads[],
@@ -155,23 +258,12 @@ enum ThreadType:
   name: string,
   icon: string,
   
-  description: string,
+  description: string, // Note that this is not present in `/communities/popular`
   membership_status: number,
   meta: { 
     total_thread: number, 
-    total_member: number,
-    total_post: number 
-  }
-}
-```
-
-### ~CommunityFeed~
-```ts
-{
-  items: Community[],
-  pagination: {
-    total: number,
-    next_cursor: string,
+    total_member: number, 
+    total_post: number // Note that this is not present in `/communities/popular`
   }
 }
 ```
@@ -183,30 +275,78 @@ enum ThreadType:
   name: string,
   thumbnail: string,
   thumbnail_compact: string,
+  url: string,
   status: number
 }
 ```
 
-### ~HotTopicFeed~
+### HotTopicFeed
+Hot topic list
+
+**Parameters**
+- `status`: number between 1 and 4, inclusive (optional, defaults to `1` - active):
+  - `1`: active
+  - `2`: inactive
+  - `3`: draft
+  - `4`: custom
+- `limit`: number (optional, defaults to `20`)
+- `cursor`: number (optional, defaults to `0`)
+
+**Data structure**
+(Note that this isn't wrapped in `data` to show that there is meta on the same level as `data`).
 ```ts
+data: HotTopic[]
+meta: {
+    cursor: string;
+}
+```
+
+**Example Request:**
+
+`GET https://www.kaskus.local/api/hot_topics?limit=2`
+
+**Example Response:**
+```json
 {
-  items: HotTopic[],
-  pagination: {
-    total: number,
-    next_cursor: string,
+  "data": [
+    {
+      "slug": "cmonbruh",
+      "name": "cmonbruh",
+      "thumbnail": "https://www.kaskus.local/r320x320/img/seasonal/october2019/thread_showcase_fc8vqxh9b63k.jpg",
+      "thumbnail_compact": "https://www.kaskus.local/r720x720/img/seasonal/october2019/thread_showcase_fc8vqxh9b63k.jpg",
+      "url": "https://www.kaskus.local/topic/cmonbruh",
+      "status": 1
+    },
+    {
+      "slug": "p5555",
+      "name": "p322",
+      "thumbnail": "https://www.kaskus.local/r320x320/img/seasonal/october2019/thread_showcase_fc8vbluqbzbq.jpg",
+      "thumbnail_compact": "https://www.kaskus.local/r720x720/img/seasonal/october2019/thread_showcase_fc8vbluqbzbq.jpg",
+      "url": "https://www.kaskus.local/topic/p5555",
+      "status": 1
+    }
+  ],
+  "meta": {
+    "cursor": "2"
   }
 }
 ```
 
+
+
 ### Channel
 ```ts
 {
-  id: string,
-  name: string
+  tag_id: string;
+  name: string;
+  description: string;
+  tab_color: string;
+  tab_color_hover: string;
+  tag_icon: string;
 }
 ```
 
-### ~ChannelFeed~
+### ~~ChannelFeed~~
 ```ts
 {
   items: Channel[],
@@ -219,50 +359,44 @@ enum ThreadType:
 
 ### User
 ```ts
-{ 
-  name: string, 
-  username: string, 
-  avatar: Image, 
-  meta: { 
-    total_thread: number, 
-    total_post: number, 
-    reputation: number
-  } 
+{
+  userid: string;
+  username: string;
+  display_name: string;
+  usertitle: string;
+  avatar: string;
 }
 ```
 
 ### Notification
 ```ts
 {
-  id: string,
-  text: string,
-  type: number,
-  created_time: Date,
-  is_read: boolean
+  id: string;
+  content: string;
+  body: string;
+  type: string;
+  dateline: number;
+  is_read: bool;
+  url: string;
 }
 ```
 
 ### Notification List
 ```ts
 {
-    stats: {
-        total_unread: number,
-        new_state: number,
-    },
-    notifications: Notification[]
+  stats: {
+    total_unread: number;
+    new_state: number;
+  };
+  notifications: [Notification];
 }
 ```
 
 ### Image
 ```ts
 { 
-  url: string, 
-  name: string,
-  is_censored: boolean,
-  meta: { 
-    width: number, 
-    height: number 
-  }
+  url: string;
+  is_censored: boolean;
 }
 ```
 
@@ -276,5 +410,82 @@ enum ThreadType:
   usertitle: string,
   online_status: number,
   top_threads: Thread[]
+}
+```
+
+### Kaskus TV
+```ts
+{
+  video: KaskusTVVideo,
+  program: KaskusTVProgram[]
+}
+```
+
+### Kaskus TV Video
+```ts
+{
+  id: string;
+  title: string;
+  url: string;
+  embed: string;
+  thumbnail: string;
+}
+```
+
+### Kaskus TV Program
+```ts
+{
+  id: string;
+  name: string;
+  url: string;
+  thumbnail: string;
+}
+```
+
+### Search
+Returns array of strings with meta as follows:
+```ts
+{
+  total: number;
+  limit: number;
+  page: number;
+  last_update: number;
+}
+```
+```json
+{
+  "data": [
+    "Live Ngaskus",
+    "Disini coba"
+  ],
+  "meta": {
+    "total": 1,
+    "limit": 20,
+    "page": 1,
+    "last_update": 1619103443
+  }
+}
+```
+
+### Banner
+
+Example call: https://www.kaskus.local/api/banners?forum_ids[]=-10007&forum_ids[]=-20007&forum_ids[]=-6&forum_ids[]=-1&position=top_billboard&list_type=0
+
+**Parameters:**
+* `forum_ids`: array of numbers (required)
+* `position`: string (required)
+* `list_type`: number (required)
+
+**Response:**
+```ts
+{
+  data: string;
+}
+```
+
+**Example Response:**
+```json
+{
+  "data": "post list all home billboard"
 }
 ```

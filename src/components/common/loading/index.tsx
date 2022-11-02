@@ -1,9 +1,4 @@
-interface Props {
-  className?: string
-}
+import LoadingGif from './gif'
+import LoadingSpinner from './spinner'
 
-const Loading = ({ className }: Props) => {
-  return <></>
-}
-
-export default Loading
+export { LoadingGif, LoadingSpinner }

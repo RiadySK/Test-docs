@@ -1,4 +1,4 @@
-import { BodyThemeContextProvider } from 'contexts/theme'
+import BodyThemeContextProvider from 'contexts/theme'
 import { ReactNode } from 'react'
 import Header from './header'
 import Footer from './footer'

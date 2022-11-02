@@ -1,12 +1,7 @@
-import { Image } from "./image"
-
 export interface User { 
-  name: string, 
+  userid: string, 
   username: string, 
-  avatar: Image, 
-  meta: { 
-    total_thread: number, 
-    total_post: number, 
-    reputation: number
-  } 
+  display_name: string, 
+  usertitle: string, 
+  avatar: string,
 }

@@ -7,13 +7,19 @@ const Document = () => {
         <link rel="icon" href="/favicon.ico" />
         <script
           type="module"
-          async
           src="https://c-staging.kaskus.id/dist/v1.2.7/eternals.es.js"
+          async
         />
+        <script src="https://www.googletagservices.com/tag/js/gpt.js" async />
       </Head>
       <body>
         <Main />
         <NextScript />
+        {/* polyfill IntersectionObserver */}
+        <script
+          src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"
+          async
+        />
       </body>
     </Html>
   )

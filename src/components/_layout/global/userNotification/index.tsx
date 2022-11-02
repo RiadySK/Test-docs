@@ -4,9 +4,12 @@ import classNames from 'classnames'
 import Overlay from 'components/common/overlay'
 import HeaderMenuDrawer from '../menuDrawer'
 import styles from './index.module.css'
+import { useNotification } from 'services/notification'
+import { parseDate } from 'utils/date'
 
 const UserNotification = (): ReactElement => {
   const [showMenus, setShowMenus] = useState<boolean>(false)
+  const { data, isLoading } = useNotification()
 
   return (
     <>
@@ -89,6 +92,39 @@ const UserNotification = (): ReactElement => {
                 </a>
               </li>
             </ul>
+            {!isLoading && data?.data && (
+              <ul className="flex w-full flex-wrap">
+                {data.data.notifications.map((item, index) => {
+                  return (
+                    <li
+                      className={classNames(
+                        styles['notification-item'],
+                        'dark:border-grey-6 dark:bg-grey-8',
+                      )}
+                      key={index + item.id}
+                    >
+                      <a href="" className="flex w-full items-center p-4">
+                        <span className="mr-2 h-8 w-8 flex-shrink-0">
+                          <img
+                            src="https://s.kaskus.id/assets/wap_1.0/images/icon-notification-follow.svg"
+                            alt="notification-follow"
+                            className="block w-full"
+                          />
+                        </span>
+                        <div className="text-sm">
+                          <span className="text-primary dark:text-primary-night">
+                            {item.body}
+                          </span>
+                          <span className="text-xs text-grey-2 dark:text-grey-4">
+                            {parseDate(item.dateline)}
+                          </span>
+                        </div>
+                      </a>
+                    </li>
+                  )
+                })}
+              </ul>
+            )}
             <div className="flex w-full justify-center text-center">
               <a className="p-4 text-blue dark:text-blue-night">Lihat semua</a>
             </div>

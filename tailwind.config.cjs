@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -11,15 +10,17 @@ module.exports = {
       colors: {
         blue: '#0082C6',
         'blue-night': '#57ACD9',
+        'blue-hover':'#0082c6b3',
+        'blue-hover-1': '#0082c61a',
+        'blue-night-hover':'#57acd9b3',
         red: '#ED1B34',
         'red-night': '#E4555D',
         yellow: '#FAA61A',
         'yellow-night': '#FDBA4D',
         'yellow-light': '#FFFEE9',
-        'yellow-light-night': '#FFFEE9',
         // Reputation
         green: '#30C436',
-        'green-light': '#60E38F',
+        'green-night': '#60E38F',
         'red-reputation': '#C82A32',
         neutral: '#CCCCCC',
         'disabled-night': '#454545',
@@ -56,6 +57,9 @@ module.exports = {
       },
       maxWidth: {
         '1440p': '1440px',
+      },
+      spacing: {
+        thumbnail: '51.7%',
       },
     },
   },

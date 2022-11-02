@@ -3,5 +3,6 @@ export interface HotTopic {
   name: string,
   thumbnail: string,
   thumbnail_compact: string,
+  url: string,
   status: number
 }

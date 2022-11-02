@@ -3,11 +3,11 @@ import { ReactElement, useState } from 'react'
 import Overlay from 'components/common/overlay'
 import HeaderMenuDrawer from '../menuDrawer'
 import styles from './index.module.css'
-import { useUser, useUserMock } from 'services/user'
+import { useUser } from 'services/user'
 
 const UserMenu = (): ReactElement => {
   const [showMenus, setShowMenus] = useState<boolean>(false)
-  const { data, isLoading } = useUserMock()
+  const { data, isLoading } = useUser()
 
   if (isLoading && !data?.data) {
     return <></>
@@ -37,12 +37,12 @@ const UserMenu = (): ReactElement => {
             >
               <span className="mr-2 h-4 w-4 overflow-hidden rounded-full border-2 border-grey-2">
                 <img
-                  src={data?.data.avatar.url}
+                  src={data?.data.avatar}
                   className="block w-full"
-                  alt={data?.data.avatar.name}
+                  alt={data?.data.username}
                 />
               </span>
-              <span>{data?.data.name}</span>
+              <span>{data?.data.username}</span>
             </a>
             <ul className="flex w-full flex-wrap">
               <li

@@ -75,7 +75,7 @@ export const cardItem: Thread = {
     total_views: 2500,
     reply_count: 30,
   },
-  first_post: {
+  post: {
     post_id: '634826e254f98c2a193609de',
     dateline: 1665656245,
     user: {
@@ -90,6 +90,9 @@ export const cardItem: Thread = {
   },
   is_subscribed: false,
   thread_type: ThreadType.TEXT,
+  content: {
+    content: 'Banyak-banyaklah membaca buku'
+  }
 }
 
 export const newCommunity = {

@@ -17,11 +17,11 @@ const CreatorSection = ({ items, className }: CreatorSectionProps) => {
   return (
     <div
       className={classNames(
-        'group bg-grey-2 px-2 py-4 dark:bg-grey-8 lg:bg-white',
+        'group bg-grey-2 py-4 dark:bg-grey-8 lg:bg-white',
         className,
       )}
     >
-      <div className="mx-2 mb-2 flex items-center justify-start">
+      <div className="mx-4 mb-4 flex items-center justify-start">
         <img
           className="object-coverk h-5 w-5 lg:h-7 lg:w-7"
           src="http://placekitten.com/200/300"
@@ -39,6 +39,9 @@ const CreatorSection = ({ items, className }: CreatorSectionProps) => {
           }}
           modules={[Navigation]}
           slidesPerView={1.2}
+          spaceBetween={16}
+          slidesOffsetAfter={16}
+          slidesOffsetBefore={16}
           className={styles['creatorSwiper']}
         >
           {items.map((item, i) => (

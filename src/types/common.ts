@@ -1,12 +1,14 @@
+import { SWRInfiniteResponse } from "swr/infinite"
+
 export interface ApiResponse<T> {
   data: T,
   meta?: {
-    pagination?: Pagination
+    cursor?: string
+    [key: string]: any
   },
   error?: {}
 }
 
-export interface Pagination {
-  total: number,
-  next_cursor: string
+export interface SWRInfiniteFlatResponse<T, S> extends Omit<SWRInfiniteResponse<T, S>, 'data'> {
+  data?: T
 }

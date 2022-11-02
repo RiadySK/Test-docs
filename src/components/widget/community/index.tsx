@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import { Community, CommunityWidgetVariant } from 'types/community'
 import CommunityCard from 'components/card/community'
 import styles from './index.module.css'
+import SectionHeader from 'components/common/sectionHeader'
 
 interface CommunityWidgetProps {
   className?: string
@@ -18,60 +19,31 @@ const CommunityWidget = ({
   className,
 }: CommunityWidgetProps) => {
   return (
-    <div className={classNames('bg-white p-4 dark:bg-black', className)}>
+    <div
+      className={classNames(
+        'bg-white p-4 dark:bg-black lg:dark:bg-grey-7',
+        className,
+      )}
+    >
       <div className="flex items-center justify-start">
         {variant == CommunityWidgetVariant.MyCommunity ? (
-          <>
-            <div
-              className={classNames(
-                styles['communityWidgetIcon'],
-                'h-5 w-5 bg-yellow lg:h-7 lg:w-7',
-              )}
-            >
-              <kaskus-icon
-                nopadding
-                noClick
-                variant="users"
-                color="white"
-              ></kaskus-icon>
-            </div>
-            <div
-              className={classNames(
-                styles['communityWidgetTitle'],
-                'dark:text-primary-night',
-              )}
-            >
-              Komunitas Saya
-            </div>
-          </>
+          <SectionHeader
+            icon="users"
+            iconClassName="text-white"
+            title="Komunitas Saya"
+            className="bg-yellow"
+          />
         ) : (
-          <>
-            <div
-              className={classNames(
-                styles['communityWidgetIcon'],
-                'h-5 w-5 bg-blue lg:h-7 lg:w-7',
-              )}
-            >
-              <kaskus-icon
-                nopadding
-                noClick
-                variant="star"
-                color="white"
-              ></kaskus-icon>
-            </div>
-            <div
-              className={classNames(
-                styles['communityWidgetTitle'],
-                'dark:text-primary-night',
-              )}
-            >
-              komunitas Baru
-            </div>
-          </>
+          <SectionHeader
+            icon="star"
+            iconClassName="text-white"
+            title="Komunitas Baru"
+            className="bg-blue"
+          />
         )}
       </div>
       {items.map((item, i) => (
-        <CommunityCard key={`${item.slug}-${i}`} {...item} />
+        <CommunityCard key={`${item.slug}-${i}`} item={item} />
       ))}
       {seeAllButton && (
         <div className="pt-4 text-center">

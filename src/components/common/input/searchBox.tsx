@@ -46,6 +46,7 @@ const SearchBox = forwardRef<HTMLInputElement, SearchBoxProps>((props, ref) => {
         onChange={handleChange}
         onFocus={handleFocus}
         autoFocus
+        autoComplete="off"
         ref={ref}
       />
       <button

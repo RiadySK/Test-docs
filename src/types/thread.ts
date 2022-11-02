@@ -1,3 +1,4 @@
+import { ImageContent, TextContent, VideoContent } from "./content";
 import { Image } from "./image"
 import { Post } from "./post"
 
@@ -33,5 +34,6 @@ export interface Thread extends ThreadBasic {
   },
   is_subscribed: boolean,
   thread_type: ThreadType,
-  first_post: Post,
+  post: Post,
+  content: TextContent | ImageContent | VideoContent;
 }

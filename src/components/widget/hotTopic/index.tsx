@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { useTopicMock } from '../../../services/topic'
+import { useHotTopics, useHotTopicsInf } from '../../../services/topic'
 import { useRef } from 'react'
 
 import HotTopicCard from 'components/card/hotTopic'
@@ -9,13 +9,15 @@ import HotTopicCard from 'components/card/hotTopic'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import styles from './index.module.css'
+import LoadMoreContextProvider from 'contexts/loadMore'
+import { LoadingSpinner } from 'components/common/loading'
 
 interface Props {
   className?: string
 }
 
 const HotTopicWidget = ({ className }: Props) => {
-  const { data, isLoading } = useTopicMock()
+  const { data, isLoading } = useHotTopicsInf()
   const prevRef = useRef<HTMLDivElement>(null)
   const nextRef = useRef<HTMLDivElement>(null)
 
@@ -86,7 +88,7 @@ const HotTopicWidget = ({ className }: Props) => {
       className={classNames(
         styles['hotTopic'],
         className,
-        'bg-white dark:bg-grey-7',
+        'mb-4 bg-white dark:bg-black lg:dark:bg-grey-7',
       )}
     >
       <div className="mb-4 flex items-center justify-between px-4">

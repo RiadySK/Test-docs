@@ -1,98 +1,141 @@
 import type { NextPage } from 'next'
-import Layout from '../../../_layout/desktop'
-import HotThreadCard from '../../../card/thread'
-import { myCommunity, newCommunity } from '../../../../services/_mock'
-import HotTopics from '../../../widget/hotTopic'
-import CommunityWidget from '../../../widget/community'
-import CommunitySection from '../../../widget/communitySection'
-import CreatorSection from '../../../widget/creatorSection'
-import { useThreadMock } from '../../../../services/thread'
-import { Thread } from '../../../../types/thread'
-import { useCommunityMock } from '../../../../services/community'
-import { useCreatorMock } from '../../../../services/kreator'
+import dynamic from 'next/dynamic'
+import { newCommunity } from 'services/_mock'
+import { useCommunityChannel, useMyCommunity } from 'services/community'
+import { useCreatorMock } from 'services/kreator'
+import {
+  CommunityChannelVariant,
+  CommunityWidgetVariant,
+} from 'types/community'
+import Layout from 'components/_layout/desktop'
+import { DFP_HOME } from 'components/ads'
+import HotTopicWidget from 'components/widget/hotTopic'
+
+// Dynamic Import
+const Ads = dynamic(() => import('components/ads'), { ssr: false })
+const HotThreadSection = dynamic(
+  () => import('components/widget/hotThreadSection'),
+  { ssr: false },
+)
+const CreatorSection = dynamic(() => import('components/widget/creatorSection'))
+const CommunitySection = dynamic(
+  () => import('components/widget/communitySection'),
+)
+const CommunityWidget = dynamic(() => import('components/widget/community'))
+// HotTopicWidget causes swiper bug when dynamic imported
 
 const HomeDesktop: NextPage = () => {
-  const { data, isLoading } = useThreadMock()
   const { data: communityData, isLoading: communityIsLoading } =
-    useCommunityMock()
-  const { data: comPopData, isLoading: comPopIsLoading } =
-    useCommunityMock('?type=populer')
+    useCommunityChannel('0', CommunityChannelVariant.New)
+  const { data: myCommunityData, isLoading: isMyCommunityLoading } =
+    useMyCommunity()
   const { data: kreatorData, isLoading: kreatorIsLoading } = useCreatorMock()
-
-  // this is mock handler
-  const handleUpvoteClick = () => {
-    alert('Upvote clicked')
-  }
-
-  const handleDownvoteClick = () => {
-    alert('Downvote clicked')
-  }
-
-  const handleReplyCountClick = () => {
-    alert('Reply count clicked')
-  }
+  const { data: comPopData, isLoading: comPopIsLoading } = useCommunityChannel()
 
   return (
     <Layout>
-      {/* <div className="grid w-full grid-flow-dense grid-cols-3 gap-4">
-        <div className="col-span-3 bg-gray-200 text-black">ADS Leaderboard</div>
-        <div className="w-60 bg-gray-200 text-black">ADS Tower 1</div>
-        <div className="bg-gray-200 text-black">main</div>
-        <div className="w-60 bg-gray-200 text-black">ADS Tower 2</div>
-      </div>
-       */}
-      <div className="my-4 w-32 bg-slate-500">ADS Tower 1</div>
+      <Ads
+        ad_unit={DFP_HOME.DFP_DESKTOP_HOME_TOWER_LEFT.ad_unit}
+        placement={DFP_HOME.DFP_DESKTOP_HOME_TOWER_LEFT.placement}
+        pos={DFP_HOME.DFP_DESKTOP_HOME_TOWER_LEFT.pos}
+        sizes={DFP_HOME.DFP_DESKTOP_HOME_TOWER_LEFT.sizes}
+        kaskus_dfp_channel={
+          DFP_HOME.DFP_DESKTOP_HOME_TOWER_LEFT.kaskus_dfp_channel
+        }
+        className="sticky top-16 my-4"
+      ></Ads>
       <main className="mx-4 flex w-970p flex-col flex-wrap justify-start">
-        <div className="my-4 h-64 w-full bg-slate-500">ADS Leaderboard</div>
-        <div className="flex w-full">
+        <Ads
+          ad_unit={DFP_HOME.DFP_DESKTOP_HOME_LEADERBOARD.ad_unit}
+          placement={DFP_HOME.DFP_DESKTOP_HOME_LEADERBOARD.placement}
+          pos={DFP_HOME.DFP_DESKTOP_HOME_LEADERBOARD.pos}
+          sizes={DFP_HOME.DFP_DESKTOP_HOME_LEADERBOARD.sizes}
+          kaskus_dfp_channel={
+            DFP_HOME.DFP_DESKTOP_HOME_LEADERBOARD.kaskus_dfp_channel
+          }
+          className="mt-4 w-full"
+        ></Ads>
+        <div className="mt-4 flex w-full">
           <aside className="w-60 flex-none">
-            {!communityIsLoading && communityData && communityData.data && (
-              <>
+            <>
+              {!communityIsLoading && communityData?.data && (
                 <CommunityWidget
                   variant={newCommunity.variant}
                   items={communityData.data}
                 />
+              )}
+              {!isMyCommunityLoading && myCommunityData?.data && (
                 <CommunityWidget
-                  items={communityData.data}
-                  variant={myCommunity.variant}
-                  seeAllButton={myCommunity.seeAllButton}
+                  items={myCommunityData.data}
+                  variant={CommunityWidgetVariant.MyCommunity}
+                  seeAllButton={true}
                   className={'mt-4'}
                 />
-              </>
-            )}
+              )}
+            </>
           </aside>
           <section className="mx-4 w-0 flex-auto">
-            {!isLoading &&
-              data?.data &&
-              data.data.map((obj: Thread, index: number) => {
-                return (
-                  <HotThreadCard
-                    className="mb-4"
-                    key={index + Math.floor(Math.random() * 1000).toString()}
-                    item={obj}
-                    onClickDownvote={handleDownvoteClick}
-                    onClickUpvote={handleUpvoteClick}
-                    onClickReplyCount={handleReplyCountClick}
+            <HotThreadSection
+              HotTopicsComponent={<HotTopicWidget key={"hot-topic-home-desktop"} />}
+              CommunitySectionComponent={
+                !comPopIsLoading &&
+                comPopData?.data && (
+                  <CommunitySection
+                    title="Komunitas Populer"
+                    items={comPopData.data}
+                    key={"komunitas-populer-home-desktop"}
                   />
                 )
-              })}
-            <HotTopics />
-            {!comPopIsLoading && comPopData && comPopData.data && (
-              <CommunitySection
-                title="Komunitas Populer"
-                items={comPopData.data}
-              />
-            )}
+              }
+            />
           </section>
           <aside className="w-300p flex-none">
-            <div className="h-64 w-300p bg-slate-500">ADS 300x250</div>
+            <Ads
+              ad_unit={DFP_HOME.DFP_DESKTOP_HOME_R1.ad_unit}
+              placement={DFP_HOME.DFP_DESKTOP_HOME_R1.placement}
+              pos={DFP_HOME.DFP_DESKTOP_HOME_R1.pos}
+              sizes={DFP_HOME.DFP_DESKTOP_HOME_R1.sizes}
+              kaskus_dfp_channel={
+                DFP_HOME.DFP_DESKTOP_HOME_R1.kaskus_dfp_channel
+              }
+              className="mb-4"
+            ></Ads>
             {!kreatorIsLoading && kreatorData && (
-              <CreatorSection items={kreatorData} className="my-4" />
+              <CreatorSection items={kreatorData} className="mb-4" />
             )}
+            <Ads
+              ad_unit={DFP_HOME.DFP_DESKTOP_HOME_R2.ad_unit}
+              placement={DFP_HOME.DFP_DESKTOP_HOME_R2.placement}
+              pos={DFP_HOME.DFP_DESKTOP_HOME_R2.pos}
+              sizes={DFP_HOME.DFP_DESKTOP_HOME_R2.sizes}
+              kaskus_dfp_channel={
+                DFP_HOME.DFP_DESKTOP_HOME_R2.kaskus_dfp_channel
+              }
+              className="mb-4"
+            ></Ads>
+            <Ads
+              ad_unit={DFP_HOME.DFP_DESKTOP_HOME_R3.ad_unit}
+              placement={DFP_HOME.DFP_DESKTOP_HOME_R3.placement}
+              pos={DFP_HOME.DFP_DESKTOP_HOME_R3.pos}
+              sizes={DFP_HOME.DFP_DESKTOP_HOME_R3.sizes}
+              kaskus_dfp_channel={
+                DFP_HOME.DFP_DESKTOP_HOME_R3.kaskus_dfp_channel
+              }
+              className="mb-4"
+            ></Ads>
           </aside>
         </div>
       </main>
-      <div className="my-4 w-32 bg-slate-500">ADS Tower 2</div>
+      <Ads
+        ad_unit={DFP_HOME.DFP_DESKTOP_HOME_TOWER_RIGHT.ad_unit}
+        placement={DFP_HOME.DFP_DESKTOP_HOME_TOWER_RIGHT.placement}
+        pos={DFP_HOME.DFP_DESKTOP_HOME_TOWER_RIGHT.pos}
+        sizes={DFP_HOME.DFP_DESKTOP_HOME_TOWER_RIGHT.sizes}
+        kaskus_dfp_channel={
+          DFP_HOME.DFP_DESKTOP_HOME_TOWER_RIGHT.kaskus_dfp_channel
+        }
+        className="sticky top-16 my-4"
+      ></Ads>
     </Layout>
   )
 }

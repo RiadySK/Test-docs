@@ -93,7 +93,7 @@ const threadList: Thread[] = [
   {
     id: 'mockId1',
     slug: 'siput nomor 1',
-    title: 'mockName numba wan',
+    title: 'nananana nanana',
     description: 'Lorem ipsum dolor sit amet, sed do et magna aliqua.',
     thumbnail: imageList[Math.floor(Math.random() * 3)]!,
     community: {
@@ -109,7 +109,10 @@ const threadList: Thread[] = [
     },
     is_subscribed: true,
     thread_type: ThreadType.TEXT,
-    first_post: postList[Math.floor(Math.random() * 4)]!,
+    post: postList[Math.floor(Math.random() * 4)]!,
+    content: {
+      content: 'Content tipe text'
+    }
   },
   {
     id: 'mockId2',
@@ -130,7 +133,10 @@ const threadList: Thread[] = [
     },
     is_subscribed: true,
     thread_type: ThreadType.IMAGE,
-    first_post: postList[Math.floor(Math.random() * 4)]!,
+    post: postList[Math.floor(Math.random() * 4)]!,
+    content: {
+      content: 'Content tipe text'
+    }
   },
   {
     id: 'mockId3',
@@ -151,11 +157,14 @@ const threadList: Thread[] = [
     },
     is_subscribed: false,
     thread_type: ThreadType.VIDEO,
-    first_post: postList[Math.floor(Math.random() * 4)]!,
+    post: postList[Math.floor(Math.random() * 4)]!,
+    content: {
+      content: 'Content tipe text'
+    }
   },
 ]
 
-const generateThreadFeed = (feedSize = 5): ApiResponse<Thread[]> => {
+const generateThreadFeed = (feedSize = 20): ApiResponse<Thread[]> => {
   let threadArr: Thread[] = []
   for (let i = 0; i < feedSize; i++) {
     threadArr.push(threadList[Math.floor(Math.random() * 3)]!)
@@ -165,8 +174,7 @@ const generateThreadFeed = (feedSize = 5): ApiResponse<Thread[]> => {
     data: threadArr,
     meta: {
       pagination: {
-        next_cursor: '1',
-        total: 1,
+        cursor: '1'
       },
     },
   }

@@ -25,8 +25,8 @@ const getFetcher = <T>(url: string) => {
   })
 
   // Failed because CORS
-  return (url: string) =>
-    fetch(url, {
+  return async (url: string) =>
+    await fetch(url, {
       headers: {
         Accept: 'application/json',
         ...oauth.toHeader(oauth.authorize(request_data)),

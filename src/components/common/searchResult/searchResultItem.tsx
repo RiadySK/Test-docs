@@ -1,3 +1,5 @@
+import HighlightedText from '../typography/highlightedText'
+
 interface Props {
   id: string
   slug: string
@@ -5,6 +7,7 @@ interface Props {
   description?: string
   icon: string
   iconSize: number
+  query: string
 }
 
 const SearchResultItem = ({
@@ -14,6 +17,7 @@ const SearchResultItem = ({
   description,
   icon,
   iconSize,
+  query,
 }: Props) => {
   const url = `/forum/${id}/${slug}`
 
@@ -22,7 +26,7 @@ const SearchResultItem = ({
     displayedCommunity = (
       <div className="w-0 flex-auto">
         <div className="overflow-hidden text-ellipsis whitespace-nowrap font-semibold text-primary dark:text-primary-night">
-          {name}
+          <HighlightedText keyword={query} text={name} />
         </div>
         <div className="mt-1 overflow-hidden text-ellipsis whitespace-nowrap text-secondary dark:text-secondary-night">
           {description}
@@ -32,7 +36,7 @@ const SearchResultItem = ({
   } else {
     displayedCommunity = (
       <div className="overflow-hidden text-ellipsis whitespace-nowrap text-primary dark:text-primary-night">
-        {name}
+        <HighlightedText keyword={query} text={name} />
       </div>
     )
   }

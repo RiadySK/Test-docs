@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { BodyThemeContextProvider } from 'contexts/theme'
+import BodyThemeContextProvider from 'contexts/theme'
 import Header from './header'
 import Footer from './footer'
 import ChannelBar from 'components/_layout/global/channelBar'

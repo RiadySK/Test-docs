@@ -1,0 +1,9 @@
+.icon {
+  @apply relative box-content flex items-center justify-center overflow-hidden rounded-sm font-black;
+  font-family: 'Font Awesome 5 Pro', 'Font Awesome 5 Brands';
+  font-style: normal;
+}
+
+.outline {
+  @apply border border-solid;
+}

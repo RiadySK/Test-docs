@@ -1,5 +1,55 @@
-const Ads = () => {
-  return <div className="bg-yellow-900 h-24 w-full">Ads</div>
+import { useEffect } from 'react'
+export * from './config'
+interface Props {
+  ad_unit: string
+  placement: string
+  kaskus_dfp_channel: string
+  sizes: number[][]
+  size_mapping?: number[][]
+  pos: string
+  list_type?: string
+  adx_permission?: boolean
+  className?: string
+}
+
+const Ads = ({
+  ad_unit,
+  sizes,
+  size_mapping,
+  placement,
+  pos,
+  list_type,
+  adx_permission,
+  kaskus_dfp_channel,
+  className,
+}: Props) => {
+  useEffect(() => {
+    if (!window) return
+    if (!ad_unit.length) return
+
+    window.googletag = window.googletag || { cmd: [] }
+
+    googletag.cmd.push(function () {
+      googletag
+        .defineSlot(ad_unit, sizes, placement)
+        // .defineSizeMapping(size_mapping)
+        .setTargeting('pos', pos)
+        .setTargeting('adxPermission', '' + adx_permission + '')
+        .setTargeting('listType', '' + list_type + '')
+        .setTargeting('channel', '' + kaskus_dfp_channel + '')
+        .addService(googletag.pubads())
+
+      googletag.pubads().enableAsyncRendering()
+      googletag.pubads().enableSingleRequest()
+      googletag.pubads().collapseEmptyDivs()
+      googletag.enableServices()
+    })
+
+    setTimeout(() => {
+      googletag.display(placement)
+    }, 300)
+  }, [ad_unit])
+  return <div id={placement} className={className}></div>
 }
 
 export default Ads

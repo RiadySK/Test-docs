@@ -1,0 +1,132 @@
+.button {
+  @apply relative flex cursor-pointer items-center justify-center whitespace-nowrap rounded-sm text-center font-medium transition-colors;
+}
+
+/* sizing */
+.small {
+  @apply text-xs;
+  padding: 4px 8px;
+  height: 24px;
+}
+
+.medium {
+  @apply text-sm;
+  padding: 8px 12px;
+  height: 36px;
+}
+
+.large {
+  @apply text-base;
+  padding: 8px 16px;
+  height: 40px;
+}
+
+/* coloring */
+.blue {
+  @apply bg-blue text-white hover:bg-blue hover:bg-blue/70 dark:bg-blue-night dark:hover:bg-blue-night/70;
+}
+
+.blue-alt {
+  @apply border border-blue text-blue hover:bg-blue/40 dark:border-blue-night dark:text-blue-night;
+  padding: 7px 15px;
+}
+
+.red {
+  @apply bg-red text-white hover:bg-red hover:bg-red/70 dark:bg-red-night dark:hover:bg-red-night/70;
+}
+
+.red-alt {
+  @apply border border-red text-red hover:bg-red/40 dark:border-red-night dark:text-red-night;
+  padding: 7px 15px;
+}
+
+.yellow {
+  @apply bg-yellow text-white hover:bg-yellow hover:bg-yellow/70 dark:bg-yellow-night dark:hover:bg-yellow-night/70;
+}
+
+.yellow-alt {
+  @apply border border-yellow text-yellow hover:bg-yellow/40 dark:border-yellow-night dark:text-yellow-night;
+  padding: 7px 15px;
+}
+
+.green {
+  @apply bg-green text-white hover:bg-green hover:bg-green/70;
+}
+
+.green-alt {
+  @apply border border-green text-green hover:bg-green/40;
+  padding: 7px 15px;
+}
+
+.grey {
+  @apply bg-gray-700 text-white hover:bg-gray-600;
+}
+
+.grey-alt {
+  @apply border border-gray-700 text-gray-700 hover:bg-gray-100;
+  padding: 7px 15px;
+}
+
+.white {
+  @apply border border-gray-700 bg-white text-gray-700 hover:bg-gray-100;
+  padding: 7px 15px;
+}
+
+.white-alt {
+  @apply border border-gray-700 text-white hover:bg-gray-50;
+  padding: 7px 15px;
+}
+
+.disabled {
+  @apply bg-gray-100 text-gray-400;
+}
+
+.disabled::after {
+  @apply absolute top-0 left-0 h-full w-full overflow-hidden rounded-full border;
+  content: '';
+  position: absolute;
+  cursor: not-allowed !important;
+}
+
+/* social media color */
+.google {
+  color: #444;
+  @apply bg-white hover:bg-white/70;
+}
+.google .button-icon {
+  background: conic-gradient(
+      from -45deg,
+      #ea4335 110deg,
+      #4285f4 90deg 180deg,
+      #34a853 180deg 270deg,
+      #fbbc05 270deg
+    )
+    73% 55%/150% 150% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.facebook {
+  background-color: #4267b2;
+  @apply text-white hover:bg-[#4267b2]/70;
+}
+.twitter {
+  background-color: #1da1f2;
+  @apply text-white hover:bg-[#1da1f2]/70;
+}
+
+/* icon */
+.button-icon {
+  color: inherit;
+  @apply -ml-1 h-4 w-4;
+}
+
+.button-icon--left {
+  @apply mr-2;
+}
+
+.button-icon--right {
+  @apply ml-2;
+}

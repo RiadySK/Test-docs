@@ -1,3 +1,5 @@
+import Icon from 'components/common/icon'
+import Share from 'components/common/share'
 import { formatNumberShort } from 'utils/number'
 
 interface Props {
@@ -20,34 +22,27 @@ export default function HotThreadCardFooter({
   return (
     <div className="flex justify-between pt-3 text-secondary dark:text-secondary-night">
       <div className="flex items-center">
-        <div className="mr-2" onClick={onClickUpvote}>
-          <kaskus-icon
-            nopadding
-            size="small"
-            variant="arrow-alt-up"
-          ></kaskus-icon>
+        <div className="mr-2 cursor-pointer" onClick={onClickUpvote}>
+          <Icon className="text-sm lg:text-base" variant="arrow-alt-up" />
         </div>
         <div className="text-sm">{vote}</div>
-        <div className="ml-2" onClick={onClickDownvote}>
-          <kaskus-icon
-            nopadding
-            size="small"
-            variant="arrow-alt-down"
-          ></kaskus-icon>
+        <div className="ml-2 cursor-pointer" onClick={onClickDownvote}>
+          <Icon className="text-sm lg:text-base" variant="arrow-alt-down" />
         </div>
       </div>
       <div className="flex items-center">
         <div className="mr-4 flex items-center">
-          <kaskus-icon nopadding size="small" variant="eye"></kaskus-icon>
+          <Icon className="text-sm lg:text-base" variant="eye" />
           <div className="ml-2 text-xs">{formatNumberShort(views)}</div>
         </div>
-        <div className="mr-4 flex items-center" onClick={onClickReplyCount}>
-          <kaskus-icon nopadding size="small" variant="reply"></kaskus-icon>
+        <div
+          className="mr-2 flex cursor-pointer items-center"
+          onClick={onClickReplyCount}
+        >
+          <Icon className="text-sm lg:text-base" variant="reply" />
           <div className="ml-2 text-xs">{formatNumberShort(replies)}</div>
         </div>
-        <div>
-          <kaskus-icon nopadding size="small" variant="share-alt"></kaskus-icon>
-        </div>
+        <Share url="" title="" description="" direction="left" />
       </div>
     </div>
   )

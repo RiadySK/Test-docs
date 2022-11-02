@@ -4,11 +4,11 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { ThemeProvider } from 'next-themes'
 
+import 'styles/fontawesome.min.css'
 import 'styles/fonts.css'
 import 'styles/globals.css'
 
 const MyApp: AppType = ({ Component, pageProps: { ...pageProps } }) => {
-  // const [queryClient] = React.useState(() => new QueryClient());
   const router = useRouter()
 
   useEffect(() => {
@@ -23,16 +23,22 @@ const MyApp: AppType = ({ Component, pageProps: { ...pageProps } }) => {
   }, [])
 
   return (
-    // <QueryClientProvider client={queryClient}>
     <SWRConfig
-      value={{ fetcher: (url: string) => fetch(url).then((res) => res.json()) }}
+      value={{
+        fetcher: (url: string) =>
+          fetch(url, { credentials: 'include' }).then((res) => {
+            if (!res.ok) {
+              // Should throw error - need to revisit
+              return Promise.reject(res)
+            }
+            return res.json()
+          }),
+      }}
     >
       <ThemeProvider attribute="class" defaultTheme="dark">
         <Component {...pageProps} />
       </ThemeProvider>
     </SWRConfig>
-    // <ReactQueryDevtools initialIsOpen={false} />
-    // </QueryClientProvider>
   )
 }
 

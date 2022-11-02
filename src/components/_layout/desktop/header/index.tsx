@@ -1,25 +1,15 @@
-import { ReactElement, useEffect, useRef, useState } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 
-import { useBodyTheme } from 'contexts/theme'
 import UserMenu from 'components/_layout/global/userMenu'
 import UserNotification from 'components/_layout/global/userNotification'
-import Overlay from 'components/common/overlay'
-import { SearchBox } from 'components/common/input'
-import SearchResult from './searchResult'
-import Modal from 'components/common/modal'
 import LoginModal from 'components/_layout/global/loginModal'
+import Search from './search'
+import Button from 'components/common/button'
 
-interface HeaderProps {
-  className?: string
-}
-
-const Header = ({ className }: HeaderProps): ReactElement => {
-  const { theme, setTheme } = useTheme()
-  const { isNight } = useBodyTheme()
+const Header = (): ReactElement => {
+  const { theme } = useTheme()
   const [logoURL, setLogoUrl] = useState('logo-kaskus-white.png')
-  const [isShowSearchDialog, setShowSearchDialog] = useState<boolean>(false)
-  const searchBoxRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (!theme) return
@@ -27,16 +17,6 @@ const Header = ({ className }: HeaderProps): ReactElement => {
       theme === 'dark' ? 'logo-kaskus-white.png' : 'logo-kaskus-full.svg'
     return setLogoUrl(themeLogo)
   }, [theme])
-
-  const [keyword, setKeyword] = useState<string>('')
-
-  const handleKeywordInput = (keyword: string) => {
-    setKeyword(keyword)
-  }
-
-  const handleSearchFocus = (status: boolean) => {
-    setShowSearchDialog(status)
-  }
 
   return (
     <>
@@ -63,35 +43,15 @@ const Header = ({ className }: HeaderProps): ReactElement => {
           </div>
           <div className="ml-16 flex flex-grow items-center">
             <div className="relative flex-1">
-              <SearchBox
-                className="z-10 flex-shrink-0 flex-grow"
-                onChange={handleKeywordInput}
-                onFocus={handleSearchFocus}
-                value={keyword}
-                ref={searchBoxRef}
-              ></SearchBox>
-              {isShowSearchDialog && (
-                <>
-                  <SearchResult keyword={keyword} />
-                  <Overlay
-                    onClick={() => setShowSearchDialog(false)}
-                    zIndex={1}
-                  />
-                </>
-              )}
+              <Search />
             </div>
             <div className="ml-2">
-              <kaskus-button
-                text="Buat Thread"
-                variant="secondary"
-              ></kaskus-button>
+              <Button type="blue-alt">Buat Thread</Button>
             </div>
             <LoginModal />
-
             {/* 
             <span
               className="ml-1 cursor-pointer"
-              onClick={() => setTheme(isNight ? 'light' : 'dark')}
             >
               <kaskus-icon size="medium" variant="cog"></kaskus-icon>
             </span> */}

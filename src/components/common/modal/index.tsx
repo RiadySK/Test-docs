@@ -20,12 +20,12 @@ const Modal = ({ children, className, onClose }: ModalProps) => {
         )}
       >
         <span
-          className="absolute -top-4 -right-4 z-10 block cursor-pointer rounded-full bg-grey-1 p-2 hover:bg-grey-2 dark:bg-grey-7 dark:hover:bg-grey-8"
+          className="absolute -top-4 -right-4 z-10 hidden cursor-pointer rounded-full bg-white p-2 hover:bg-grey-1 dark:bg-grey-7 dark:hover:bg-grey-8 lg:block"
           onClick={onClose}
         >
           <kaskus-icon variant="times" size="small" noPadding noClick />
         </span>
-        <div className="p4 relative m-auto">{children}</div>
+        <div className="relative">{children}</div>
       </div>
       <Overlay onClick={onClose} zIndex={49} />
     </>

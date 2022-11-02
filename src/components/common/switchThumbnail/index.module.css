@@ -1,0 +1,17 @@
+.switchThumbnail {
+  @apply flex items-center cursor-pointer;
+}
+
+.thumbnail {
+  @apply rounded-l-3 border border-solid border-grey-4 dark:border-grey-5 flex justify-center items-center;
+  border-right-width: 0.5px;
+}
+
+.compact {
+  @apply rounded-r-3 border border-solid border-grey-4 dark:border-grey-5 flex justify-center items-center;
+  border-left-width: 0.5px;
+}
+
+.selected {
+  @apply bg-grey-3 dark:bg-grey-6;
+}

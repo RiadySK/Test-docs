@@ -1,4 +1,6 @@
 import classNames from 'classnames'
+import { useEffect } from 'react'
+
 import styles from './index.module.css'
 
 interface OverlayProps {
@@ -8,6 +10,11 @@ interface OverlayProps {
 }
 
 const Overlay = ({ className, zIndex = 0, onClick }: OverlayProps) => {
+  useEffect(() => {
+    document.body.classList.add('overflow-hidden')
+    return () => document.body.classList.remove('overflow-hidden')
+  }, [])
+
   return (
     <div
       style={{ zIndex }}

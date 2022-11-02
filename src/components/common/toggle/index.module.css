@@ -1,89 +1,70 @@
-/* TODO */
 .toggle {
-  position: relative;
   width: 35px;
   height: 23px;
+  @apply relative;
 }
+
 .toggle label input[type='checkbox'] {
-  display: none;
+  @apply hidden;
 }
+
 .toggle label input[type='checkbox'] + span {
-  border-radius: 34px;
-  width: 35px;
-  display: inline-block;
-  position: absolute;
   right: 0;
   top: 5px;
-  /* background-color: ${color["grey-2"]}; */
+  width: 35px;
   height: 14px;
+  border-radius: 34px;
+  @apply absolute inline-block bg-grey-2;
 }
+
 .toggle label input[type='checkbox'] + span::before {
-  position: absolute;
   content: '';
   height: 18px;
   width: 18px;
-  left: -2px;
-  bottom: -3px;
-  /* background-color: ${color.white}; */
+  left: 0px;
+  bottom: -2px;
   transition: 0.4s;
-  /* border: 1px solid ${color["grey-2"]}; */
   border-radius: 50%;
   z-index: 1;
+  @apply absolute border border-grey-2 bg-white;
 }
+
 .toggle label input[type='checkbox']:disabled + span::before {
-  /* background-color: ${color["grey-4"]}; */
-  /* border: 1px solid ${color["grey-4"]}; */
+  @apply border border-grey-4 bg-grey-4;
 }
+
 .toggle label input[type='checkbox']:checked + span {
-  /* background-color: ${color.blueHover1}; */
+  @apply bg-blue/70 dark:bg-blue-night/70;
 }
+
 .toggle label input[type='checkbox']:checked + span::before {
-  /* border-color: ${color.blue}; */
   transform: translateX(18px);
-  /* background-color: ${color.blue}; */
+  @apply border-blue bg-blue dark:border-blue-night dark:bg-blue-night;
 }
+
 .toggle label:hover {
-  cursor: pointer;
+  @apply cursor-pointer;
 }
+
 .toggle label:hover input[type='checkbox'] + i::before {
   font-weight: 900;
 }
+
 .toggle span {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  @apply select-none;
 }
-.toggle.nightmode label input[type='checkbox']:checked + span::before {
-  /* border-color: ${color.blueNight}; */
-  /* background-color: ${color.blueNight}; */
-}
-.toggle.nightmode label input[type='checkbox']:checked + span {
-  /* background-color: ${color.blueNightHover}; */
-}
-.toggle.nightmode label input[type='checkbox']:disabled + span::before {
-  /* background-color: ${color["grey-6"]}; */
-  /* border: 1px solid ${color["grey-6"]}; */
-}
-.toggle.nightmode label input[type='checkbox'] + span {
-  /* background-color: ${color["grey-5"]}; */
-}
-.toggle.nightmode label input[type='checkbox'] + span::before {
-  /* border: 1px solid ${color["grey-5"]}; */
-}
+
 .toggle svg {
-  position: absolute;
-  top: 50%;
-  height: 16px;
-  weight: 16px;
   animation: spinning 1s infinite linear;
+  @apply absolute top-1/2 h-4 w-4;
 }
+
 .toggle svg.left {
-  left: 0;
+  @apply left-0;
 }
+
 .toggle svg.right {
-  right: 0;
+  @apply right-0;
 }
 
 @keyframes spinning {

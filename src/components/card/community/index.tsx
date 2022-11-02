@@ -1,18 +1,22 @@
 import classNames from 'classnames'
 
+import Button from 'components/common/button'
 import { Community } from 'types/community'
-import { formatNumberShort } from '../../../utils/number'
+import { formatNumberShort } from 'utils/number'
 
-interface CommunityProps extends Community {
+interface CommunityProps {
+  item: Community
   className?: string
   button?: boolean
 }
 
 const CommunityCard = ({
-  name,
-  icon,
-  meta: { total_thread, total_post },
-  membership_status,
+  item: {
+    name,
+    icon,
+    meta: { total_thread, total_member },
+    membership_status,
+  },
   className,
   button,
 }: CommunityProps) => {
@@ -31,16 +35,14 @@ const CommunityCard = ({
           </a>
           <div className="text-xs text-secondary dark:text-secondary-night">
             {formatNumberShort(total_thread)} Thread •{' '}
-            {formatNumberShort(total_post)} Post
+            {formatNumberShort(total_member)} Anggota
           </div>
         </div>
         {membership_status === 0 && button === true && (
           <div className="ml-auto">
-            <kaskus-button
-              text="gabung"
-              variant="secondary"
-              onClick={() => console.log('onclick')}
-            ></kaskus-button>
+            <Button type="blue-alt" onClick={() => alert('Bergabung')}>
+              Gabung
+            </Button>
           </div>
         )}
       </div>

@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import Button from 'components/common/button'
 import { Kreator } from '../../../types/creator'
 
 interface CreatorProps extends Kreator {
@@ -41,7 +42,9 @@ const Creator = ({
           </div>
         </div>
         <div className="ml-auto w-16">
-          <kaskus-button size="small" width="100%" text="Ikuti"></kaskus-button>
+          <Button type="blue-alt" className="w-full" size="small">
+            Ikuti
+          </Button>
         </div>
       </div>
       {top_threads.map((item, i) => (

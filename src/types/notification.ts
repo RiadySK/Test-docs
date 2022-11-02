@@ -1,7 +1,17 @@
 export interface Notification {
-  id: string,
-  text: string,
-  type: number,
-  created_time: Date,
-  is_read: boolean
+  id: string;
+  content: string;
+  body: string;
+  type: string;
+  dateline: number;
+  is_read: boolean;
+  url: string;
+}
+
+export interface NotificationList {
+  stats: {
+    new_state: number,
+    pm_unread: number,
+  },
+  notifications: Notification[]
 }

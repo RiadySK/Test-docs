@@ -6,6 +6,7 @@ import CommunitySection from 'components/widget/communitySection'
 import ThreadRecomendationSection from 'components/widget/threadRecomendationSection'
 import CommunityWidget from 'components/widget/community'
 import CreatorSection from 'components/widget/creatorSection'
+import Icon from 'components/common/icon'
 import {
   KomunitasPopuler,
   ThreadrecomendationItem,
@@ -14,22 +15,10 @@ import {
   myCommunity,
 } from '../services/_mock'
 import { useCreatorMock } from '../services/kreator'
+import { CardDisplayType } from 'types/hotThread'
 
 const Home: NextPage = () => {
   const { data, isLoading } = useCreatorMock()
-
-  // this is mock handler
-  const handleUpvoteClick = () => {
-    alert('Upvote clicked')
-  }
-
-  const handleDownvoteClick = () => {
-    alert('Downvote clicked')
-  }
-
-  const handleReplyCountClick = () => {
-    alert('Reply count clicked')
-  }
 
   return (
     <>
@@ -48,9 +37,7 @@ const Home: NextPage = () => {
         <div className="mb-4">
           <HotThreadCard
             item={cardItem}
-            onClickUpvote={handleUpvoteClick}
-            onClickDownvote={handleDownvoteClick}
-            onClickReplyCount={handleReplyCountClick}
+            displayType={CardDisplayType.THUMBNAIL}
           />
         </div>
         <div className="mb-4">
@@ -77,6 +64,9 @@ const Home: NextPage = () => {
             <CreatorSection items={data} />
           </div>
         )}
+        <div className="mb-4 p-5 text-red dark:text-red-night">
+          <Icon variant="star"></Icon>
+        </div>
       </main>
     </>
   )

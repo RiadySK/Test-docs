@@ -1,22 +1,28 @@
+import classNames from 'classnames'
+
 import { parseDate } from 'utils/date'
 
 interface Props {
+  className?: string
   communityName: string
   communityIcon: string
   displayName: string
   dateline: number
   membershipStatus: number
+  cardType?: 'default' | 'live' | 'video' | 'ads' | 'textOnly'
 }
 
 export default function HotThreadCardHeader({
+  className,
   communityName,
   communityIcon,
   displayName,
   dateline,
   membershipStatus,
+  cardType,
 }: Props) {
   return (
-    <div className="flex pt-2 pb-2 md:mr-2">
+    <div className={classNames('flex py-2 md:mb-1 md:pt-0', className)}>
       <div className="flex items-center">
         <img src={communityIcon} className="h-9 w-9" alt={communityName} />
       </div>
@@ -25,10 +31,16 @@ export default function HotThreadCardHeader({
           <a className="text-primary dark:text-primary-night" href="#">
             {communityName}
           </a>
-          {membershipStatus === 0 && (
+          {cardType === 'ads' ? (
             <a className="ml-2 text-blue dark:text-blue-night" href="#">
-              Gabung
+              Detail
             </a>
+          ) : (
+            membershipStatus === 0 && (
+              <a className="ml-2 text-blue dark:text-blue-night" href="#">
+                Gabung
+              </a>
+            )
           )}
         </div>
         <div className="flex text-xs md:text-sm">
@@ -37,7 +49,7 @@ export default function HotThreadCardHeader({
           </a>
           <div className="ml-1 text-primary dark:text-primary-night">•</div>
           <div className="ml-1 text-tertiary dark:text-tertiary-night">
-            {parseDate(dateline)}
+            {cardType === 'ads' ? 'Spotlight' : parseDate(dateline)}
           </div>
         </div>
       </div>
