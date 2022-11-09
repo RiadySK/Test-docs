@@ -1,11 +1,14 @@
 import { ReactElement, useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
+
 import { useBodyTheme } from 'contexts/theme'
+import Icon from 'components/common/icon'
+import Create from 'components/_layout/global/create'
 import UserMenu from 'components/_layout/global/userMenu'
-import UserNotification from 'components/_layout/global/userNotification'
 import LoginModal from 'components/_layout/global/loginModal'
-import Search from './search'
+import UserNotification from 'components/_layout/global/userNotification'
 import NavigationDrawer from './navigationDrawer'
+import Search from './search'
 
 const Header = (): ReactElement => {
   const { theme } = useTheme()
@@ -36,10 +39,8 @@ const Header = (): ReactElement => {
             </div>
           </div>
           <div className="flex items-center">
-            {/* <span className="mr-1 text-sm dark:text-white">
-              <Button type="blue">Masuk</Button>
-            </span> */}
             <Search />
+            <Create />
             <LoginModal />
             {/* if Login */}
             <UserNotification />

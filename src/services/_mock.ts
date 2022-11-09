@@ -1,4 +1,5 @@
 import { CommunityWidgetVariant } from 'types/community'
+import { HotThread } from 'types/hotThread'
 import { Thread, ThreadType } from 'types/thread'
 
 export const KomunitasPopuler = {
@@ -49,12 +50,11 @@ export const ThreadrecomendationItem = [
   },
 ]
 
-export const cardItem: Thread = {
+export const cardItem: HotThread = {
   id: '63242555813ca64b0c3c8597',
   slug: 'keluarga-lukas-enembe-bawa-surat',
   title:
     'Keluarga Lukas Enembe Bawa Surat ke DPR Papua, begini isi pengaduannya',
-  description: 'lekas sembuh keluarga lukas',
   thumbnail: {
     url: 'http://placekitten.com/400/400',
     is_censored: false,
@@ -86,8 +86,11 @@ export const cardItem: Thread = {
   is_subscribed: false,
   thread_type: ThreadType.TEXT,
   content: {
-    content: 'Banyak-banyaklah membaca buku'
-  }
+    content: 'Banyak-banyaklah membaca buku',
+  },
+  hot_thread_content: {
+    description: 'Morbi tristique senectus et netus. Faucibus turpis in eu mi.',
+  },
 }
 
 export const newCommunity = {

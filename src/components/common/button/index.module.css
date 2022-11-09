@@ -1,5 +1,5 @@
 .button {
-  @apply relative flex cursor-pointer items-center justify-center whitespace-nowrap rounded-sm text-center font-medium transition-colors;
+  @apply relative flex cursor-pointer flex-nowrap items-center justify-center whitespace-nowrap rounded-sm text-center font-medium transition-colors;
 }
 
 /* sizing */
@@ -91,6 +91,7 @@
 /* social media color */
 .google {
   color: #444;
+  border: thin solid #888;
   @apply bg-white hover:bg-white/70;
 }
 .google .button-icon {

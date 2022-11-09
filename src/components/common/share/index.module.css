@@ -32,5 +32,5 @@
 }
 
 .share-item {
-  @apply flex cursor-pointer items-center rounded-sm px-2 py-1 hover:bg-grey-2 dark:bg-grey-7;
+  @apply flex cursor-pointer items-center rounded-sm px-2 py-1 hover:bg-grey-2 dark:bg-grey-7 dark:hover:bg-grey-8;
 }

@@ -2,7 +2,7 @@ import { API_URL_HOT_TOPICS } from 'constant/api'
 import useSWR from 'swr'
 import useSWRInfinite from 'swr/infinite'
 import { ApiResponse } from 'types/common'
-import { HotTopic } from 'types/hotTopics'
+import { HotTopic } from 'types/hotTopic'
 import { flatSWRInfiniteAPIResp } from 'utils/api'
 
 export const useHotTopics = () => {

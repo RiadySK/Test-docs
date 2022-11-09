@@ -8,6 +8,7 @@ import { SearchBox } from 'components/common/input'
 import styles from './index.module.css'
 import LoadMoreContextProvider from 'contexts/loadMore'
 import { LoadingGif } from 'components/common/loading'
+import Icon from 'components/common/icon'
 
 const ChannelBarCommunities = (): ReactElement => {
   const [showMenus, setShowMenus] = useState<boolean>(false)
@@ -49,12 +50,7 @@ const ChannelBarCommunities = (): ReactElement => {
           onClick={() => setShowMenus(!showMenus)}
         >
           <span className="mr-2">KOMUNITAS</span>
-          <kaskus-icon
-            variant={showMenus ? 'chevron-up' : 'chevron-down'}
-            size="small"
-            noPadding
-            noClick
-          />
+          <Icon variant={showMenus ? 'chevron-up' : 'chevron-down'} />
         </div>
         <div
           className={classNames(
@@ -76,12 +72,7 @@ const ChannelBarCommunities = (): ReactElement => {
               {!!dataInf?.data?.length && (
                 <>
                   <div className="flex w-full items-center px-2 py-2 text-sm font-medium">
-                    <kaskus-icon
-                      variant="users"
-                      size="small"
-                      noPadding
-                      noClick
-                    />
+                    <Icon className="!h-5 !w-5 !text-sm" variant="users" />
                     <span className="ml-2">Komunitas Populer</span>
                   </div>
                   <ul className="flex w-full flex-wrap">

@@ -42,11 +42,11 @@ const Ads = ({
       googletag.pubads().enableSingleRequest()
       googletag.pubads().collapseEmptyDivs()
       googletag.enableServices()
-    })
 
-    setTimeout(async () => {
-      ;(await googletag) && googletag.display(placement)
-    }, 300)
+      setTimeout(async () => {
+        ;(await googletag) && googletag.display(placement)
+      }, 300)
+    })
   }, [ad_unit])
 
   return <div id={placement} className={className}></div>

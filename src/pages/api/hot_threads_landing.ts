@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { ApiResponse } from 'types/common'
+import { HotThread } from 'types/hotThread'
 import { Image } from '../../types/image'
 import { Post } from '../../types/post'
-import { Thread, ThreadType } from '../../types/thread'
+import { ThreadType } from '../../types/thread'
 
 const imageList: Image[] = [
   {
@@ -78,12 +79,16 @@ const postList: Post[] = [
   },
 ]
 
-const threadList: Thread[] = [
+const threadList: HotThread[] = [
   {
     id: '6361a9e3f630e03baf005a4f',
     slug: 'unik-dan-berbeda-berikut-ini-beberapa-komunitas-yang-bisa-disebut-tidak-biasa',
-    title: 'Unik dan Berbeda, Berikut Ini Beberapa Komunitas yang Bisa Disebut Tidak Biasa',
-    description: 'Komunitas, seperti yang Agan dan Sista ketahui merupakan sekelompok orang yang berkumpul dalam satu wadah untuk menjalankan sebuah hobi, kegemaran, atau ketertarikan terhadap suatu hal.',
+    title:
+      'Unik dan Berbeda, Berikut Ini Beberapa Komunitas yang Bisa Disebut Tidak Biasa',
+    hot_thread_content: {
+      description:
+        'Komunitas, seperti yang Agan dan Sista ketahui merupakan sekelompok orang yang berkumpul dalam satu wadah untuk menjalankan sebuah hobi, kegemaran, atau ketertarikan terhadap suatu hal.',
+    },
     thumbnail: imageList[3]!,
     community: {
       id: 392,
@@ -100,19 +105,21 @@ const threadList: Thread[] = [
     thread_type: ThreadType.TEXT,
     post: postList[0]!,
     content: {
-      content: 'Content tipe text'
-    }
+      content: 'Content tipe text',
+    },
   },
   {
-    id: 'mockId2',
-    slug: 'siput juara 2',
-    title: 'Hot Thread is Hot 2',
-    description: 'Cursus mattis molestie a iaculis at.',
-    thumbnail: imageList[Math.floor(Math.random() * 3)]!,
+    id: '6369aa17c947062d0253a532',
+    slug: '11-objek-terbesar-di-alam-semesta-yang-akan-membuatmu-takjub-dan-merinding',
+    title: '11 Objek Terbesar Di Alam Semesta yang Akan Membuatmu Takjub dan Merinding',
+    hot_thread_content: {
+      description: 'Cursus mattis molestie a iaculis at.',
+      url: 'https://www.youtube.com/embed/q6EoRBvdVPQ'
+    },
     community: {
-      id: 9,
-      name: 'komunitas sendiri',
-      icon: 'https://s.kaskus.id/ficon/image-8.png',
+      id: 597,
+      name: 'Sains & Teknologi',
+      icon: 'https://s.kaskus.id/r60x60/ficon/image-597.png',
       membership_status: 1,
     },
     meta: {
@@ -121,17 +128,20 @@ const threadList: Thread[] = [
       reply_count: 2451,
     },
     is_subscribed: true,
-    thread_type: ThreadType.IMAGE,
+    thread_type: ThreadType.TEXT,
     post: postList[Math.floor(Math.random() * 4)]!,
     content: {
-      content: 'Content tipe text'
-    }
+      content: 'Content tipe text',
+    },
   },
   {
     id: 'mockId3',
     slug: 'siput lantai 3',
     title: 'Hot Thread is Hot 3',
-    description: 'Morbi tristique senectus et netus. Faucibus turpis in eu mi.',
+    hot_thread_content: {
+      description:
+        'Morbi tristique senectus et netus. Faucibus turpis in eu mi.',
+    },
     thumbnail: imageList[Math.floor(Math.random() * 3)]!,
     community: {
       id: 42,
@@ -148,18 +158,18 @@ const threadList: Thread[] = [
     thread_type: ThreadType.VIDEO,
     post: postList[Math.floor(Math.random() * 4)]!,
     content: {
-      content: 'Content tipe text'
-    }
+      content: 'Content tipe text',
+    },
   },
 ]
 
-const generateHotThread = (feedSize = 20): ApiResponse<Thread[]> => {
-  let threadArr: Thread[] = []
+const generateHotThread = (feedSize = 20): ApiResponse<HotThread[]> => {
+  let threadArr: HotThread[] = []
   for (let i = 0; i < feedSize; i++) {
     threadArr.push(threadList[i % 3]!)
   }
 
-  var threadFeed: ApiResponse<Thread[]> = {
+  var threadFeed: ApiResponse<HotThread[]> = {
     data: threadArr,
   }
   return threadFeed

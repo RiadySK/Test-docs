@@ -31,11 +31,11 @@ const CommunityCard = ({
         className,
       )}
     >
-      <div className="items-centers flex w-full justify-start border-b py-4 px-1.5 dark:border-b-night-border">
-        <a href={threadListUrl}>
-          <img className="mr-2 h-9 w-9 object-cover" src={icon} alt={icon} />
+      <div className="items-centers flex w-full justify-start border-b py-4 dark:border-b-night-border">
+        <a href={threadListUrl} className="mr-2 flex-shrink-0">
+          <img className="h-9 w-9 object-cover" src={icon} alt={icon} />
         </a>
-        <div>
+        <div className="flex w-full flex-wrap">
           <a
             href={threadListUrl}
             className="w-fit cursor-pointer text-sm font-bold text-primary line-clamp-2 dark:text-primary-night"

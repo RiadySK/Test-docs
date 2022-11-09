@@ -1,9 +1,11 @@
+// OBSOLETE, CAN BE DELETED
 import classNames from 'classnames'
 
 import { Community, CommunityWidgetVariant } from 'types/community'
 import CommunityCard from 'components/card/community'
 import styles from './index.module.css'
 import SectionHeader from 'components/common/sectionHeader'
+import { URL_FORUM_ALL, URL_MY_COMMUNITY } from 'constant/routes'
 
 interface CommunityWidgetProps {
   className?: string
@@ -21,7 +23,7 @@ const CommunityWidget = ({
   return (
     <div
       className={classNames(
-        'bg-white p-4 dark:bg-black lg:dark:bg-grey-7',
+        'border-y-4 border-grey-6 bg-white p-4 dark:bg-grey-7 lg:border-0',
         className,
       )}
     >
@@ -29,16 +31,14 @@ const CommunityWidget = ({
         {variant == CommunityWidgetVariant.MyCommunity ? (
           <SectionHeader
             icon="users"
-            iconClassName="text-white"
+            iconClassName="text-white bg-yellow"
             title="Komunitas Saya"
-            className="bg-yellow"
           />
         ) : (
           <SectionHeader
             icon="star"
-            iconClassName="text-white"
+            iconClassName="text-white bg-blue"
             title="Komunitas Baru"
-            className="bg-blue"
           />
         )}
       </div>
@@ -47,7 +47,14 @@ const CommunityWidget = ({
       ))}
       {seeAllButton && (
         <div className="pt-4 text-center">
-          <a className="ml-auto cursor-pointer text-sm font-bold text-blue dark:text-blue-night">
+          <a
+            href={
+              variant == CommunityWidgetVariant.MyCommunity
+                ? URL_MY_COMMUNITY
+                : URL_FORUM_ALL
+            }
+            className="ml-auto cursor-pointer text-sm font-bold text-blue dark:text-blue-night"
+          >
             Lihat Semua
           </a>
         </div>

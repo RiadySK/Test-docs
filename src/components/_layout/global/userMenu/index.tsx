@@ -1,9 +1,10 @@
 import classNames from 'classnames'
 import { ReactElement, useState } from 'react'
+import { useUser } from 'services/user'
 import Overlay from 'components/common/overlay'
+import Icon from 'components/common/icon'
 import HeaderMenuDrawer from '../menuDrawer'
 import styles from './index.module.css'
-import { useUser } from 'services/user'
 
 const UserMenu = (): ReactElement => {
   const [showMenus, setShowMenus] = useState<boolean>(false)
@@ -18,19 +19,15 @@ const UserMenu = (): ReactElement => {
       <div className="relative">
         <span
           className={classNames(
-            'relative block cursor-pointer rounded-lg text-sm hover:bg-grey-2 dark:hover:bg-grey-8',
-            showMenus && 'z-50 bg-grey-2 dark:bg-grey-8',
+            'relative block cursor-pointer rounded-lg p-2 text-sm hover:bg-grey-2 dark:hover:bg-grey-7 lg:dark:hover:bg-grey-8',
+            showMenus && 'z-50 bg-grey-2 dark:bg-grey-7',
           )}
           onClick={() => setShowMenus(!showMenus)}
         >
-          <kaskus-icon
-            size="medium"
-            variant={showMenus ? 'times' : 'user'}
-            noClick
-          ></kaskus-icon>
+          <Icon variant={showMenus ? 'times' : 'user'} />
         </span>
         <HeaderMenuDrawer isShow={showMenus}>
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap lg:w-60">
             <a
               className="flex w-full items-center border-b border-grey-3 p-4 dark:border-grey-6"
               href=""
@@ -44,7 +41,12 @@ const UserMenu = (): ReactElement => {
               </span>
               <span>{data?.data.username}</span>
             </a>
-            <ul className="flex w-full flex-wrap">
+            <ul
+              className={classNames(
+                styles['userMenu-container'],
+                'no-scrollbar',
+              )}
+            >
               <li
                 className={classNames(
                   styles['userMenu-item'],
@@ -104,12 +106,7 @@ const UserMenu = (): ReactElement => {
               >
                 <a href="" className="flex w-full items-center p-4">
                   <span className="mr-2 h-4 w-4">
-                    <kaskus-icon
-                      size="small"
-                      variant="comments"
-                      noPadding
-                      noClick
-                    ></kaskus-icon>
+                    <Icon variant="comments" className="!h-4 !w-4 !text-sm" />
                   </span>
                   <span className="text-sm">Aktivitas Forum</span>
                 </a>
@@ -122,16 +119,14 @@ const UserMenu = (): ReactElement => {
               >
                 <a href="" className="flex w-full items-center p-4">
                   <span className="mr-2 h-4 w-4">
-                    <kaskus-icon
-                      size="small"
+                    <Icon
                       variant="shopping-cart"
-                      noPadding
-                      noClick
-                    ></kaskus-icon>
+                      className="!h-4 !w-4 !text-sm"
+                    />
                   </span>
                   <span className="text-sm">Aktivitas Jual Beli</span>
                 </a>
-              </li>
+              </li>{' '}
               <li
                 className={classNames(
                   styles['userMenu-item'],
@@ -140,12 +135,7 @@ const UserMenu = (): ReactElement => {
               >
                 <a href="" className="flex w-full items-center p-4">
                   <span className="mr-2 h-4 w-4">
-                    <kaskus-icon
-                      size="small"
-                      variant="envelope"
-                      noPadding
-                      noClick
-                    ></kaskus-icon>
+                    <Icon variant="envelope" className="!h-4 !w-4 !text-sm" />
                   </span>
                   <span className="text-sm">Kotak Pesan</span>
                 </a>
@@ -158,12 +148,7 @@ const UserMenu = (): ReactElement => {
               >
                 <a href="" className="flex w-full items-center p-4">
                   <span className="mr-2 h-4 w-4">
-                    <kaskus-icon
-                      size="small"
-                      variant="cog"
-                      noPadding
-                      noClick
-                    ></kaskus-icon>
+                    <Icon variant="cog" className="!h-4 !w-4 !text-sm" />
                   </span>
                   <span className="text-sm">Pengaturan Akun</span>
                 </a>
@@ -176,12 +161,7 @@ const UserMenu = (): ReactElement => {
               >
                 <a href="" className="flex w-full items-center p-4">
                   <span className="mr-2 h-4 w-4">
-                    <kaskus-icon
-                      size="small"
-                      variant="sign-out"
-                      noPadding
-                      noClick
-                    ></kaskus-icon>
+                    <Icon variant="sign-out" className="!h-4 !w-4 !text-sm" />
                   </span>
                   <span className="text-sm">Keluar</span>
                 </a>

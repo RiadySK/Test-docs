@@ -1,6 +1,5 @@
-import cn from 'classnames'
-import { forwardRef } from 'react'
-import { BaseSyntheticEvent } from 'react'
+import { forwardRef, KeyboardEvent, BaseSyntheticEvent } from 'react'
+import classNames from 'classnames'
 
 interface SearchBoxProps {
   value?: string
@@ -29,6 +28,12 @@ const SearchBox = forwardRef<HTMLInputElement, SearchBoxProps>((props, ref) => {
     onFocus?.(true)
   }
 
+  const handleKeyUp = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSubmit()
+    }
+  }
+
   const handleSubmit = () => {
     if (value && onSubmit) {
       onSubmit(value)
@@ -36,7 +41,7 @@ const SearchBox = forwardRef<HTMLInputElement, SearchBoxProps>((props, ref) => {
   }
 
   return (
-    <div className={cn('relative mx-auto', className)}>
+    <div className={classNames('relative mx-auto', className)}>
       <input
         className="h-9 w-full overflow-hidden rounded-3 border border-grey-2 bg-white pl-2 pr-10 text-sm text-grey-7 focus:outline-none dark:border-grey-5 dark:bg-grey-7 dark:text-grey-2"
         type="search"
@@ -45,8 +50,9 @@ const SearchBox = forwardRef<HTMLInputElement, SearchBoxProps>((props, ref) => {
         placeholder={placeholder}
         onChange={handleChange}
         onFocus={handleFocus}
-        autoFocus
+        onKeyUp={handleKeyUp}
         autoComplete="off"
+        // autoFocus
         ref={ref}
       />
       <button

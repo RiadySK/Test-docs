@@ -1,10 +1,10 @@
 const DFP_MOBILE = '/21995995410/kaskus-wap-'
 const DFP_DESKTOP = '/21995995410/kaskus-desktop-'
 const DFP_FORUM_HOME = 'forum/-2-kaskus-home'
-const DFP_FORUM_CHANNEL_HOME = 'channel/-2-kaskus-home'
+const DFP_CHANNEL_HOME = 'channel/-2-kaskus-home'
 
 export const DFP_DESKTOP_HOME = {
-  DFP_DESKTOP_HOME_LEADERBOARD: {
+  LEADERBOARD: {
     ad_unit: DFP_DESKTOP + DFP_FORUM_HOME + '/top-leaderboard',
     sizes: [
       [1, 1],
@@ -17,9 +17,9 @@ export const DFP_DESKTOP_HOME = {
     placement: 'div-gpt-ad-top-leaderboard',
     pos: 'top-leaderboard',
     list_type: 'others',
-    kaskus_dfp_channel: DFP_FORUM_CHANNEL_HOME,
+    kaskus_dfp_channel: DFP_CHANNEL_HOME,
   },
-  DFP_DESKTOP_HOME_TOWER_LEFT: {
+  TOWER_LEFT: {
     ad_unit: DFP_DESKTOP + DFP_FORUM_HOME + '/skyscrapper-left',
     sizes: [
       [120, 600],
@@ -29,9 +29,9 @@ export const DFP_DESKTOP_HOME = {
     placement: 'div-gpt-ad-skyscrapper-left',
     pos: 'skyscrapper-left',
     list_type: 'others',
-    kaskus_dfp_channel: DFP_FORUM_CHANNEL_HOME,
+    kaskus_dfp_channel: DFP_CHANNEL_HOME,
   },
-  DFP_DESKTOP_HOME_TOWER_RIGHT: {
+  TOWER_RIGHT: {
     ad_unit: DFP_DESKTOP + DFP_FORUM_HOME + '/skyscrapper-right',
     sizes: [
       [120, 600],
@@ -41,9 +41,9 @@ export const DFP_DESKTOP_HOME = {
     placement: 'div-gpt-ad-skyscrapper-right',
     pos: 'skyscrapper-right',
     list_type: 'others',
-    kaskus_dfp_channel: DFP_FORUM_CHANNEL_HOME,
+    kaskus_dfp_channel: DFP_CHANNEL_HOME,
   },
-  DFP_DESKTOP_HOME_R1: {
+  R1: {
     ad_unit: DFP_DESKTOP + DFP_FORUM_HOME + '/r1',
     sizes: [
       [300, 250],
@@ -53,9 +53,9 @@ export const DFP_DESKTOP_HOME = {
     placement: 'div-gpt-ad-r1',
     pos: 'r1',
     list_type: 'others',
-    kaskus_dfp_channel: DFP_FORUM_CHANNEL_HOME,
+    kaskus_dfp_channel: DFP_CHANNEL_HOME,
   },
-  DFP_DESKTOP_HOME_R2: {
+  R2: {
     ad_unit: DFP_DESKTOP + DFP_FORUM_HOME + '/r2',
     sizes: [
       [300, 250],
@@ -65,9 +65,9 @@ export const DFP_DESKTOP_HOME = {
     placement: 'div-gpt-ad-r2',
     pos: 'r2',
     list_type: 'others',
-    kaskus_dfp_channel: DFP_FORUM_CHANNEL_HOME,
+    kaskus_dfp_channel: DFP_CHANNEL_HOME,
   },
-  DFP_DESKTOP_HOME_R3: {
+  R3: {
     ad_unit: DFP_DESKTOP + DFP_FORUM_HOME + '/r3',
     sizes: [
       [300, 250],
@@ -77,12 +77,12 @@ export const DFP_DESKTOP_HOME = {
     placement: 'div-gpt-ad-r3',
     pos: 'r3',
     list_type: 'others',
-    kaskus_dfp_channel: DFP_FORUM_CHANNEL_HOME,
+    kaskus_dfp_channel: DFP_CHANNEL_HOME,
   },
 }
 
 export const DFP_MOBILE_HOME = {
-  DFP_MOBILE_HOME_LEADERBOARD: {
+  LEADERBOARD: {
     ad_unit: DFP_MOBILE + DFP_FORUM_HOME + '/top-wap',
     sizes: [
       [320, 50],
@@ -92,9 +92,9 @@ export const DFP_MOBILE_HOME = {
     placement: 'div-gpt-ad-top-wap',
     pos: 'top-wap',
     list_type: 'others',
-    kaskus_dfp_channel: DFP_FORUM_CHANNEL_HOME,
+    kaskus_dfp_channel: DFP_CHANNEL_HOME,
   },
-  DFP_MOBILE_HOME_STICKY: {
+  STICKY: {
     ad_unit: DFP_MOBILE + DFP_FORUM_HOME + '/sticky-wap',
     sizes: [
       [320, 50],
@@ -104,9 +104,9 @@ export const DFP_MOBILE_HOME = {
     placement: 'div-gpt-ad-sticky-wap',
     pos: 'sticky-wap',
     list_type: 'others',
-    kaskus_dfp_channel: DFP_FORUM_CHANNEL_HOME,
+    kaskus_dfp_channel: DFP_CHANNEL_HOME,
   },
-  DFP_MOBILE_HOME_MIDDLE1: {
+  MIDDLE1: {
     ad_unit: DFP_MOBILE + DFP_FORUM_HOME + '/middle1-wap',
     sizes: [
       [300, 250],
@@ -118,9 +118,9 @@ export const DFP_MOBILE_HOME = {
     placement: 'div-gpt-ad-middle1-wap',
     pos: 'middle1-wap',
     list_type: 'others',
-    kaskus_dfp_channel: DFP_FORUM_CHANNEL_HOME,
+    kaskus_dfp_channel: DFP_CHANNEL_HOME,
   },
-  DFP_MOBILE_HOME_MIDDLE2: {
+  MIDDLE2: {
     ad_unit: DFP_MOBILE + DFP_FORUM_HOME + '/middle2-wap',
     sizes: [
       [300, 250],
@@ -132,9 +132,9 @@ export const DFP_MOBILE_HOME = {
     placement: 'div-gpt-ad-middle2-wap',
     pos: 'middle2-wap',
     list_type: 'others',
-    kaskus_dfp_channel: DFP_FORUM_CHANNEL_HOME,
+    kaskus_dfp_channel: DFP_CHANNEL_HOME,
   },
-  DFP_MOBILE_HOME_BOTTOM: {
+  BOTTOM: {
     ad_unit: DFP_MOBILE + DFP_FORUM_HOME + '/bottom-wap',
     sizes: [
       [300, 250],
@@ -146,6 +146,6 @@ export const DFP_MOBILE_HOME = {
     placement: 'div-gpt-ad-rectangle-wap',
     pos: 'bottom-wap',
     list_type: 'others',
-    kaskus_dfp_channel: DFP_FORUM_CHANNEL_HOME,
+    kaskus_dfp_channel: DFP_CHANNEL_HOME,
   },
 }

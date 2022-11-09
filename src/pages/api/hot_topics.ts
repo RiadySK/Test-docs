@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { ApiResponse } from 'types/common'
-import { HotTopic } from 'types/hotTopics'
+import { HotTopic } from 'types/hotTopic'
 
 const ITEM_TOTAL = 8
 const items: HotTopic[] = Array(ITEM_TOTAL)
@@ -14,8 +14,43 @@ const items: HotTopic[] = Array(ITEM_TOTAL)
     url: 'https:\/\/www.kaskus.local\/topic\/cmonbruh'
   }))
 
+const itemsMockProd = [
+  {
+    name: 'Noktah Merah Pernikahan',
+    status: 1,
+    slug: `noktah-merah-pernikahan`,
+    thumbnail: 'https://s.kaskus.id/img/seasonal/october2022/thread_showcase_fd2fdhb0hzra.jpg',
+    thumbnail_compact: 'https://s.kaskus.id/img/seasonal/october2022/thread_showcase_fd2fdhb0hzra.jpg',
+    url: `https://www.kaskus.co.id/topic/noktah-merah-pernikahan`
+  },
+  {
+    name: 'Pray for Kanjuruhan',
+    status: 1,
+    slug: `pray-for-kanjuruhan`,
+    thumbnail: 'https://s.kaskus.id/img/seasonal/october2022/thread_showcase_fd2ersbhkd3g.jpg',
+    thumbnail_compact: 'https://s.kaskus.id/img/seasonal/october2022/thread_showcase_fd2ersbhkd3g.jpg',
+    url: `https://www.kaskus.co.id/topic/pray-for-kanjuruhan`
+  },
+  {
+    name: 'Kominfo VS Bjorka',
+    status: 1,
+    slug: `kominfo-vs-bjorka`,
+    thumbnail: 'https://s.kaskus.id/img/seasonal/september2022/thread_showcase_fd2bib8kmxmi.jpg',
+    thumbnail_compact: 'https://s.kaskus.id/img/seasonal/september2022/thread_showcase_fd2bib8kmxmi.jpg',
+    url: `https://www.kaskus.co.id/topic/kominfo-vs-bjorka`
+  },
+  {
+    name: 'Fenomena Mejeng di Citayam Fashion Week',
+    status: 1,
+    slug: `fenomena-mejeng-di-citayam-fashion-week`,
+    thumbnail: 'https://s.kaskus.id/img/seasonal/july2022/thread_showcase_fd24x1470t4p.jpg',
+    thumbnail_compact: 'https://s.kaskus.id/img/seasonal/july2022/thread_showcase_fd24x1470t4p.jpg',
+    url: `https://www.kaskus.co.id/topic/fenomena-mejeng-di-citayam-fashion-week`
+  },
+]
+
 const hotTopicFeed: ApiResponse<HotTopic[]> = {
-  data: items,
+  data: itemsMockProd,
   meta: {
     cursor: 'AoIIRhUC5zg2MWMzMDI1NDNkOTJiOTZkNjE0MzlhOGY',
   },

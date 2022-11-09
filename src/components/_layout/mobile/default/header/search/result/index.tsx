@@ -5,6 +5,7 @@ import { SearchBox } from 'components/common/input'
 import SearchResultDefault from './searchResultDefault'
 import SearchResultSnippet from './searchResultSnippet'
 import styles from './index.module.css'
+import { useSearchHistory } from 'services/search'
 
 interface SearchResultProps {
   isShow: boolean
@@ -19,6 +20,7 @@ const SearchResult = ({
 }: SearchResultProps): ReactElement => {
   const [keyword, setKeyword] = useState<string>('')
   const searchBoxRef = useRef<HTMLInputElement>(null)
+  const { addKeyword } = useSearchHistory()
 
   useEffect(() => {
     if (isShow) {
@@ -28,8 +30,12 @@ const SearchResult = ({
     }
   }, [isShow])
 
-  const handleKeywordInput = (keyword: string) => {
+  const handleKeywordInput = (keyword: string): void => {
     setKeyword(keyword)
+  }
+
+  const handleSubmit = (): void => {
+    addKeyword(keyword)
   }
 
   return (
@@ -45,9 +51,10 @@ const SearchResult = ({
         <div className="flex border-b border-grey-2 px-2 py-3 dark:border-grey-5">
           <SearchBox
             className="flex-auto"
-            onChange={handleKeywordInput}
             value={keyword}
             ref={searchBoxRef}
+            onChange={handleKeywordInput}
+            onSubmit={handleSubmit}
           ></SearchBox>
           <button
             onClick={() => onClose()}

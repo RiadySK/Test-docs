@@ -55,16 +55,15 @@ const SearchResultSnippet = ({ query }: Props) => {
       <ul className="text-secondary dark:text-secondary-night">
         {dataThread?.data.slice(0, MAX_RESULT).map((thread, index) => {
           const key = `${thread.id}-${index}`
-          return (
-            <SearchResultItemLarge
-              key={key}
-              id={thread.id}
-              slug={thread.slug}
-              title={thread.title}
-              thumbnail={thread.thumbnail}
-              query={query}
-            />
-          )
+          const threadURL = `/thread/${thread.id}/${thread.slug}`
+          const item = {
+            id: thread.id,
+            url: threadURL,
+            title: thread.title,
+            thumbnail: thread.thumbnail,
+          }
+
+          return <SearchResultItemLarge key={key} item={item} query={query} />
         })}
       </ul>
       <Button className="mt-3 self-center" type="blue-alt">

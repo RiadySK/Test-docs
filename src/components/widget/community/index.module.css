@@ -1,7 +1,0 @@
-.communityWidgetTitle {
- @apply font-secondary text-xl font-bold text-primary 
-}
-
-.communityWidgetIcon {
-  @apply mr-2 flex items-center justify-center rounded-full  
-}

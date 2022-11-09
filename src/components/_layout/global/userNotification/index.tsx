@@ -1,11 +1,12 @@
 import { ReactElement, useState } from 'react'
 import classNames from 'classnames'
 
-import Overlay from 'components/common/overlay'
-import HeaderMenuDrawer from '../menuDrawer'
-import styles from './index.module.css'
 import { useNotification } from 'services/notification'
 import { parseDate } from 'utils/date'
+import Overlay from 'components/common/overlay'
+import Icon from 'components/common/icon'
+import HeaderMenuDrawer from '../menuDrawer'
+import styles from './index.module.css'
 
 const UserNotification = (): ReactElement => {
   const [showMenus, setShowMenus] = useState<boolean>(false)
@@ -16,16 +17,12 @@ const UserNotification = (): ReactElement => {
       <div className="relative">
         <span
           className={classNames(
-            'relative block cursor-pointer rounded-lg text-sm hover:bg-grey-2 dark:hover:bg-grey-8',
-            showMenus && 'z-50 bg-grey-2 dark:bg-grey-8',
+            'relative block cursor-pointer rounded-lg p-2 text-sm hover:bg-grey-2 dark:hover:bg-grey-7 lg:dark:hover:bg-grey-8',
+            showMenus && 'z-50 bg-grey-2 dark:bg-grey-7',
           )}
           onClick={() => setShowMenus(!showMenus)}
         >
-          <kaskus-icon
-            size="medium"
-            variant={showMenus ? 'times' : 'bell'}
-            noClick
-          ></kaskus-icon>
+          <Icon variant={showMenus ? 'times' : 'bell'} />
         </span>
         <HeaderMenuDrawer
           isShow={showMenus}
@@ -35,23 +32,16 @@ const UserNotification = (): ReactElement => {
             <div className="flex flex-wrap">
               <div className="flex w-full items-center justify-between p-4">
                 <span className="text-sm ">Notifications</span>
-                <a href="">
-                  <kaskus-icon
-                    size="medium"
-                    variant="cog"
-                    noClick
-                    noPadding
-                  ></kaskus-icon>
+                <a href="/notification/settings">
+                  <Icon className="!h-4 !w-4 !text-xs" variant="cog" />
                 </a>
               </div>
               <div className="flex w-full items-center border border-blue p-4 text-sm text-primary dark:border-blue-night dark:text-primary-night">
-                <span className="mr-2 flex h-8 w-8 flex-shrink-0 items-center">
-                  <kaskus-icon
-                    size="large"
+                <span className="mr-2 flex h-8 w-8 flex-shrink-0 items-center overflow-hidden rounded-full bg-blue p-2 dark:bg-blue-night">
+                  <Icon
+                    className="!h-4 !w-4 !text-xs text-white"
                     variant="bell"
-                    noClick
-                    noPadding
-                  ></kaskus-icon>
+                  />
                 </span>
                 <span>
                   Sering ketinggalan thread-thread SERU? KASKUS bisa kasih Agan
@@ -62,60 +52,32 @@ const UserNotification = (): ReactElement => {
                 </span>
               </div>
             </div>
-            <ul className="flex w-full flex-wrap">
-              <li
-                className={classNames(
-                  styles['notification-item'],
-                  'dark:border-grey-6 dark:bg-grey-8',
-                )}
-              >
-                <a href="" className="flex w-full items-center p-4">
-                  <span className="mr-2 h-8 w-8 flex-shrink-0">
-                    <img
-                      src="https://s.kaskus.id/assets/wap_1.0/images/icon-notification-follow.svg"
-                      alt="notification-follow"
-                      className="block w-full"
-                    />
-                  </span>
-                  <div className="text-sm">
-                    <span className="text-primary dark:text-primary-night">
-                      <span className="font-semibold">provocator3301</span>,
-                      <span className="font-semibold">provocator.3301</span> dan
-                      <span className="font-semibold">kamujahat.21.</span>, dan
-                      <span className="font-semibold">1</span> orang lainnya
-                      mulai mengikuti Agan
-                    </span>
-                    <span className="text-xs text-grey-2 dark:text-grey-4">
-                      30-08-2022 12:56
-                    </span>
-                  </div>
-                </a>
-              </li>
-            </ul>
             {!isLoading && data?.data && (
-              <ul className="flex w-full flex-wrap">
+              <ul className={styles['notification-container']}>
                 {data.data.notifications.map((item, index) => {
                   return (
                     <li
                       className={classNames(
                         styles['notification-item'],
-                        'dark:border-grey-6 dark:bg-grey-8',
+                        'no-scrollbar',
                       )}
                       key={index + item.id}
                     >
-                      <a href="" className="flex w-full items-center p-4">
-                        <span className="mr-2 h-8 w-8 flex-shrink-0">
-                          <img
-                            src="https://s.kaskus.id/assets/wap_1.0/images/icon-notification-follow.svg"
-                            alt="notification-follow"
-                            className="block w-full"
+                      <a
+                        href={item.url}
+                        className="flex w-full items-start p-4"
+                      >
+                        <span className="mr-2 flex h-8 w-8 flex-shrink-0 items-center overflow-hidden rounded-full bg-blue p-2 dark:bg-blue-night">
+                          <Icon
+                            className="!h-4 !w-4 !text-xs text-white"
+                            variant="user-plus"
                           />
                         </span>
-                        <div className="text-sm">
-                          <span className="text-primary dark:text-primary-night">
+                        <div className="flex flex-wrap text-sm">
+                          <span className="w-full text-primary dark:text-primary-night">
                             {item.body}
                           </span>
-                          <span className="text-xs text-grey-2 dark:text-grey-4">
+                          <span className="w-full text-xs text-secondary dark:text-secondary-night">
                             {parseDate(item.dateline)}
                           </span>
                         </div>

@@ -1,8 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { ApiResponse } from 'types/common'
+import { HotThread } from 'types/hotThread'
 import { Image } from '../../types/image'
 import { Post } from '../../types/post'
-import { Thread, ThreadType } from '../../types/thread'
+import { ThreadType } from '../../types/thread'
 
 const imageList: Image[] = [
   {
@@ -78,12 +79,16 @@ const postList: Post[] = [
   },
 ]
 
-const threadList: Thread[] = [
+const threadList: HotThread[] = [
   {
     id: '6361a9e3f630e03baf005a4f',
     slug: 'unik-dan-berbeda-berikut-ini-beberapa-komunitas-yang-bisa-disebut-tidak-biasa',
-    title: 'Unik dan Berbeda, Berikut Ini Beberapa Komunitas yang Bisa Disebut Tidak Biasa',
-    description: 'Komunitas, seperti yang Agan dan Sista ketahui merupakan sekelompok orang yang berkumpul dalam satu wadah untuk menjalankan sebuah hobi, kegemaran, atau ketertarikan terhadap suatu hal.',
+    title:
+      'Unik dan Berbeda, Berikut Ini Beberapa Komunitas yang Bisa Disebut Tidak Biasa',
+    hot_thread_content: {
+      description:
+        'Komunitas, seperti yang Agan dan Sista ketahui merupakan sekelompok orang yang berkumpul dalam satu wadah untuk menjalankan sebuah hobi, kegemaran, atau ketertarikan terhadap suatu hal.',
+    },
     thumbnail: imageList[3]!,
     community: {
       id: 23,
@@ -100,19 +105,21 @@ const threadList: Thread[] = [
     thread_type: ThreadType.TEXT,
     post: postList[Math.floor(Math.random() * 4)]!,
     content: {
-      content: 'Content tipe text'
-    }
+      content: 'Content tipe text',
+    },
   },
   {
-    id: 'mockId2',
-    slug: 'siput juara 2',
-    title: 'Forever Hot 二',
-    description: 'Cursus mattis molestie a iaculis at.',
-    thumbnail: imageList[Math.floor(Math.random() * 3)]!,
+    id: '6369aa17c947062d0253a532',
+    slug: '11-objek-terbesar-di-alam-semesta-yang-akan-membuatmu-takjub-dan-merinding',
+    title: '11 Objek Terbesar Di Alam Semesta yang Akan Membuatmu Takjub dan Merinding',
+    hot_thread_content: {
+      description: 'Cursus mattis molestie a iaculis at.',
+      url: 'https://www.youtube.com/embed/q6EoRBvdVPQ'
+    },
     community: {
-      id: 9,
-      name: 'komunitas sendiri',
-      icon: 'https://s.kaskus.id/ficon/image-8.png',
+      id: 597,
+      name: 'Sains & Teknologi',
+      icon: 'https://s.kaskus.id/r60x60/ficon/image-597.png',
       membership_status: 1,
     },
     meta: {
@@ -121,22 +128,24 @@ const threadList: Thread[] = [
       reply_count: 2451,
     },
     is_subscribed: true,
-    thread_type: ThreadType.IMAGE,
+    thread_type: ThreadType.TEXT,
     post: postList[Math.floor(Math.random() * 4)]!,
     content: {
-      content: 'Content tipe text'
-    }
+      content: 'Content tipe text',
+    },
   },
   {
-    id: 'mockId3',
-    slug: 'siput lantai 3',
-    title: 'Forever Hot 三',
-    description: 'Morbi tristique senectus et netus. Faucibus turpis in eu mi.',
-    thumbnail: imageList[Math.floor(Math.random() * 3)]!,
+    id: '63636428b11d6427d3306d72',
+    slug: 'pilih-mana',
+    title: 'Pilih Mana ?',
+    hot_thread_content: {
+      description:
+        'Pesta apa yg paling enak menurut agan2 .. :bingung Besok malming, gw ada kumpul2 ketemu ame sohib lama. Udah sepuh sih, usia kepala naga semwa pokok nya. Rencana nya : Plan A 1. Makan malam di tower 2. Booking Karaoke 3. Booking cewe :genit Plan B 1. Kafe minum kopik 2. Nonton bioskop 3. Makan malam 4. Jalan2 Plan C 1. Booking Hotel 2. Booking cewe 3. ngenthod rame2 ! Pilih yg mana enak nya, gan :ngakak',
+    },
     community: {
-      id: 42,
-      name: 'komunitas terpisah',
-      icon: 'https://s.kaskus.id/ficon/image-6.png',
+      id: 16,
+      name: 'Heart to Heart',
+      icon: 'https://s.kaskus.id/r60x60/ficon/image-16.png',
       membership_status: 1,
     },
     meta: {
@@ -145,24 +154,134 @@ const threadList: Thread[] = [
       reply_count: 1223,
     },
     is_subscribed: false,
-    thread_type: ThreadType.VIDEO,
+    thread_type: ThreadType.TEXT,
     post: postList[Math.floor(Math.random() * 4)]!,
     content: {
-      content: 'Content tipe text'
-    }
+      content: 'Content tipe text',
+    },
+  },
+  {
+    id: '6361a9e3f630e03baf005a4f',
+    slug: 'unik-dan-berbeda-berikut-ini-beberapa-komunitas-yang-bisa-disebut-tidak-biasa',
+    title:
+      'Unik dan Berbeda, Berikut Ini Beberapa Komunitas yang Bisa Disebut Tidak Biasa',
+    hot_thread_content: {
+      description:
+        'Komunitas, seperti yang Agan dan Sista ketahui merupakan sekelompok orang yang berkumpul dalam satu wadah untuk menjalankan sebuah hobi, kegemaran, atau ketertarikan terhadap suatu hal.',
+      promotion_data: {
+        promoted_username: 'admon',
+        cta_button: 'Klik disini gan',
+        entitlement: 'Spotlight',
+        promoted_avatar: {
+          url: 'https://s.kaskus.id/user/avatar/2016/07/23/avatar8970274_3.gif',
+          is_censored: false
+        },
+      }
+    },
+    thumbnail: imageList[3]!,
+    community: {
+      id: 23,
+      name: 'komunitas bersama',
+      icon: 'https://s.kaskus.id/ficon/image-9.png',
+      membership_status: 0,
+    },
+    meta: {
+      rating: 8273,
+      total_views: 11232,
+      reply_count: 231,
+    },
+    is_subscribed: true,
+    thread_type: ThreadType.TEXT,
+    post: postList[Math.floor(Math.random() * 4)]!,
+    content: {
+      content: 'Content tipe text',
+    },
+  },
+  {
+    id: '6369aa17c947062d0253a532',
+    slug: '11-objek-terbesar-di-alam-semesta-yang-akan-membuatmu-takjub-dan-merinding',
+    title: '11 Objek Terbesar Di Alam Semesta yang Akan Membuatmu Takjub dan Merinding',
+    hot_thread_content: {
+      description: 'Cursus mattis molestie a iaculis at.',
+      url: 'https://www.youtube.com/embed/q6EoRBvdVPQ',
+      promotion_data: {
+        promoted_username: 'admon',
+        cta_button: 'Cek detailnya disini',
+        entitlement: 'Ads',
+        promoted_avatar: {
+          url: 'https://s.kaskus.id/user/avatar/2016/07/23/avatar8970274_3.gif',
+          is_censored: false
+        },
+      }
+    },
+    community: {
+      id: 597,
+      name: 'Sains & Teknologi',
+      icon: 'https://s.kaskus.id/r60x60/ficon/image-597.png',
+      membership_status: 1,
+    },
+    meta: {
+      rating: 3,
+      total_views: 847192,
+      reply_count: 2451,
+    },
+    is_subscribed: true,
+    thread_type: ThreadType.TEXT,
+    post: postList[Math.floor(Math.random() * 4)]!,
+    content: {
+      content: 'Content tipe text',
+    },
+  },
+  {
+    id: '63636428b11d6427d3306d72',
+    slug: 'pilih-mana',
+    title: 'Pilih Mana ?',
+    hot_thread_content: {
+      description:
+        'Pesta apa yg paling enak menurut agan2 .. :bingung Besok malming, gw ada kumpul2 ketemu ame sohib lama. Udah sepuh sih, usia kepala naga semwa pokok nya. Rencana nya : Plan A 1. Makan malam di tower 2. Booking Karaoke 3. Booking cewe :genit Plan B 1. Kafe minum kopik 2. Nonton bioskop 3. Makan malam 4. Jalan2 Plan C 1. Booking Hotel 2. Booking cewe 3. ngenthod rame2 ! Pilih yg mana enak nya, gan :ngakak',
+      promotion_data: {
+        promoted_username: 'admon',
+        cta_button: 'Detail',
+        entitlement: 'Sponsored',
+        promoted_avatar: {
+          url: 'https://s.kaskus.id/user/avatar/2016/07/23/avatar8970274_3.gif',
+          is_censored: false
+        },
+      }
+    },
+    community: {
+      id: 16,
+      name: 'Heart to Heart',
+      icon: 'https://s.kaskus.id/r60x60/ficon/image-16.png',
+      membership_status: 1,
+    },
+    meta: {
+      rating: 33,
+      total_views: 53425,
+      reply_count: 1223,
+    },
+    is_subscribed: false,
+    thread_type: ThreadType.TEXT,
+    post: postList[Math.floor(Math.random() * 4)]!,
+    content: {
+      content: 'Content tipe text',
+    },
   },
 ]
 
-const generateHotThread = (feedSize = 20, pageNum = 0): ApiResponse<Thread[]> => {
-  let threadArr: Thread[] = []
+const generateHotThread = (
+  feedSize = 20,
+  pageNum = 0,
+): ApiResponse<HotThread[]> => {
+  let threadArr: HotThread[] = []
   for (let i = 0; i < feedSize; i++) {
-    threadArr.push(threadList[i % 3]!)
+    threadArr.push(threadList[i % threadList.length]!)
   }
 
-  var threadFeed: ApiResponse<Thread[]> = {
+  var threadFeed: ApiResponse<HotThread[]> = {
     data: threadArr,
     meta: {
-      cursor: (pageNum + 1).toString()
+      cursor: (pageNum + 1).toString(),
     },
   }
   return threadFeed
@@ -173,14 +292,14 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
     // Process a POST request
   } else {
     // Handle any other HTTP method
-    let reqLimit = req.query?.limit ? req.query?.limit : '20';
-    let reqCursor = req.query?.cursor ? req.query?.cursor : '0';
-    if (req.query && reqLimit && reqCursor ) {
-      const pageNum = parseInt(reqCursor as string ?? 0);
-      const limitNum = parseInt(reqLimit as string);
+    let reqLimit = req.query?.limit ? req.query?.limit : '20'
+    let reqCursor = req.query?.cursor ? req.query?.cursor : '0'
+    if (req.query && reqLimit && reqCursor) {
+      const pageNum = parseInt((reqCursor as string) ?? 0)
+      const limitNum = parseInt(reqLimit as string)
       res.status(200).json(generateHotThread(limitNum, pageNum))
     } else {
-      res.status(400).json({ error: 'Pen Pinapo Pen' });
+      res.status(400).json({ error: 'Pen Pinapo Pen' })
     }
   }
 }

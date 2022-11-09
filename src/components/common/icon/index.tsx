@@ -4,29 +4,29 @@ import { ReactNode } from 'react'
 import styles from './index.module.css'
 
 interface Props {
-  className?: string
-  variant: string
   type?: 'solid' | 'outline' | 'regular'
+  variant: string
   children?: ReactNode
+  className?: string
+  // add '!' prefix for text-*, h-*, and w-* moddifiers. ex: !text-sm, !w-4, and !h-4.
   onClick?: () => void
 }
 
 const Icon = ({
-  className,
-  variant,
   type = 'regular',
+  variant,
   children,
+  className,
   onClick,
 }: Props) => {
-  const iconClassName = className ? className : 'text-base p-2'
-
   return (
     <i
       className={classNames(
-        styles['icon'],
+        'h-5 w-5 text-base',
         `fas fa-${variant}`,
+        styles['icon'],
         styles[type],
-        iconClassName,
+        className,
       )}
       onClick={onClick}
     >

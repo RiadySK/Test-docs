@@ -1,3 +1,4 @@
+import { PARAMS_ROUTES, URL_THREAD_LIST } from 'constant/routes'
 import HighlightedText from '../typography/highlightedText'
 
 interface Props {
@@ -19,7 +20,7 @@ const SearchResultItem = ({
   iconSize,
   query,
 }: Props) => {
-  const url = `/forum/${id}/${slug}`
+  const url = URL_THREAD_LIST.replace(PARAMS_ROUTES.ID, id)
 
   let displayedCommunity
   if (description) {

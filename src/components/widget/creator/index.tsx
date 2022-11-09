@@ -1,19 +1,35 @@
 import classNames from 'classnames'
-import Button from 'components/common/button'
-import { Kreator } from '../../../types/creator'
 
-interface CreatorProps extends Kreator {
+import Button from 'components/common/button'
+import {
+  PARAMS_ROUTES,
+  URL_THREAD_DETAIL,
+  URL_USER_PROFILE,
+  URL_USER_THREAD_LIST,
+} from 'constant/routes'
+import { Kreator } from 'types/creator'
+
+interface CreatorProps {
   className?: string
+  item: Kreator
 }
 
 const Creator = ({
-  username,
-  display_name,
-  usertitle,
-  top_threads,
+  item: {
+    userid: id,
+    username: name,
+    usertitle: title,
+    avatar: profile_picture,
+    threads,
+  },
   className,
-  profilepicture,
 }: CreatorProps) => {
+  const profileUrl = URL_USER_PROFILE.replace(PARAMS_ROUTES.ID, id)
+
+  const handleClickFollow = () => {
+    alert('Follow Clicked')
+  }
+
   return (
     <div
       className={classNames(
@@ -22,39 +38,44 @@ const Creator = ({
       )}
     >
       <div className="flex items-center justify-start pb-2">
-        {/* TODO: Need to update later  */}
-        <a href={'https://www.kaskus.co.id/@' + username}>
+        <a href={profileUrl}>
           <img
             className="mr-2 h-9 w-9 flex-none rounded-full object-cover"
-            src={profilepicture}
-            alt={username}
+            src={profile_picture}
+            alt={name}
           />
         </a>
         <div className="mr-2 flex-1 overflow-hidden">
-          {/* TODO: Need to update later  */}
-          <a href={'https://www.kaskus.co.id/@' + username}>
+          <a href={profileUrl}>
             <div className="overflow-hidden text-ellipsis text-sm font-bold text-primary dark:text-primary-night ">
-              {display_name}
+              {name}
             </div>
           </a>
           <div className="overflow-hidden text-ellipsis text-xs text-tertiary dark:text-tertiary-night">
-            {usertitle}
+            {title}
           </div>
         </div>
         <div className="ml-auto w-16">
-          <Button type="blue-alt" className="w-full" size="small">
+          <Button
+            type="blue"
+            className="w-full"
+            size="small"
+            onClick={handleClickFollow}
+          >
             Ikuti
           </Button>
         </div>
       </div>
-      {top_threads.map((item, i) => (
+      {threads.map((item, i) => (
         <div key={i} className="flex items-center justify-start py-2">
           <div className="flex h-5 w-5 items-center justify-center bg-blue text-xs text-white dark:bg-blue-night">
             #{i + 1}
           </div>
-          {/* TODO: Need to update later  */}
           <a
-            href={'https://www.kaskus.co.id/thread/' + item.id}
+            href={URL_THREAD_DETAIL.replace(PARAMS_ROUTES.ID, item.id).replace(
+              PARAMS_ROUTES.SLUG,
+              item.slug,
+            )}
             className="ml-4 flex-1 text-sm font-medium text-secondary dark:text-secondary-night"
           >
             {item.title}
@@ -62,9 +83,8 @@ const Creator = ({
         </div>
       ))}
       <div className="pt-2">
-        {/* TODO: Need to update later  */}
         <a
-          href={'https://www.kaskus.co.id/@' + username + '/viewallthreads'}
+          href={URL_USER_THREAD_LIST.replace(PARAMS_ROUTES.ID, id)}
           className="ml-auto text-sm font-bold text-blue dark:text-blue-night"
         >
           Lihat Thread Lainnya

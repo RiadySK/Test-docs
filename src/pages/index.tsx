@@ -3,7 +3,7 @@ import Head from 'next/head'
 import HotThreadCard from 'components/card/thread'
 import HotTopics from 'components/widget/hotTopic'
 import CommunitySection from 'components/widget/communitySection'
-import ThreadRecomendationSection from 'components/widget/threadRecomendationSection'
+import ThreadRecomendationSection from 'components/widget/threadRecommendation'
 import CommunityWidget from 'components/widget/community'
 import CreatorSection from 'components/widget/creatorSection'
 import Icon from 'components/common/icon'
@@ -14,12 +14,9 @@ import {
   newCommunity,
   myCommunity,
 } from '../services/_mock'
-import { useCreatorMock } from '../services/kreator'
 import { CardDisplayType } from 'types/hotThread'
 
 const Home: NextPage = () => {
-  const { data, isLoading } = useCreatorMock()
-
   return (
     <>
       <Head>
@@ -59,11 +56,9 @@ const Home: NextPage = () => {
             seeAllButton={myCommunity.seeAllButton}
           />
         </div>
-        {!isLoading && data && (
-          <div className="mb-4">
-            <CreatorSection items={data} />
-          </div>
-        )}
+        <div className="mb-4">
+          <CreatorSection />
+        </div>
         <div className="mb-4 p-5 text-red dark:text-red-night">
           <Icon variant="star"></Icon>
         </div>

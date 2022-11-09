@@ -1,9 +1,14 @@
-import { Fragment, ReactNode, useEffect, useState } from 'react'
+import { Fragment, ReactNode, Suspense, useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 
+import HotTopicWidget from '../../../../widget/hotTopic'
 import HotThreadCard from 'components/card/thread'
 import SectionHeader from 'components/common/sectionHeader'
 import SwitchThumbnail from 'components/common/switchThumbnail'
-import { LoadingGif } from 'components/common/loading'
+import { LoadingSpinner } from 'components/common/loading'
+const CommunitySection = dynamic(
+  () => import('components/widget/communitySection'),
+)
 
 import { CardDisplayType } from 'types/hotThread'
 import LoadMoreContextProvider from 'contexts/loadMore'
@@ -11,18 +16,13 @@ import {
   getLocalStorageCardDisplay,
   setLocalStorageCardDisplay,
 } from 'utils/localstorage'
-import { useHotThreadsLanding } from 'services/hotThread'
+import { useHotThreads } from 'services/hotThread'
+import { useCommunityChannel } from 'services/community'
+import HotThreadCardSkeleton from 'components/card/thread/hotThreadCardSkeleton'
 
-interface Props {
-  HotTopicsComponent: ReactNode
-  CommunitySectionComponent?: ReactNode
-}
-
-const HotThreadSection = ({
-  HotTopicsComponent,
-  CommunitySectionComponent,
-}: Props) => {
-  const { data, isLoading } = useHotThreadsLanding()
+const HotThreadSection = () => {
+  const { data, isLoading, isValidating, setSize, size } = useHotThreads()
+  const { data: comPopData, isLoading: comPopIsLoading } = useCommunityChannel()
 
   const localStorageDisplayType = getLocalStorageCardDisplay()
   const [isThumbnail, setThumbnail] = useState<boolean>(
@@ -33,7 +33,9 @@ const HotThreadSection = ({
   const displayType = isThumbnail
     ? CardDisplayType.THUMBNAIL
     : CardDisplayType.COMPACT
-  const cardTypes = ['default', 'live', 'video', 'ads', 'textOnly'] as const
+
+  const HOT_TOPIC = 5
+  const POPULAR_COMMUNITY = 11
 
   useEffect(() => {
     if (displayType == localStorageDisplayType) return
@@ -41,7 +43,12 @@ const HotThreadSection = ({
   }, [displayType])
 
   const renderHotThreadStream = (): ReactNode => {
-    if (!data?.data.length) return null
+    if (!data?.data.length && isLoading) {
+      const skeleton = [1, 2, 3]
+      return skeleton.map((item) => (
+        <HotThreadCardSkeleton key={item} displayType={displayType} />
+      ))
+    }
 
     return data?.data.map((thread, index) => {
       const key = `${thread.id} + ${index}`
@@ -51,13 +58,19 @@ const HotThreadSection = ({
           <HotThreadCard
             className="mb-4"
             item={thread}
-            cardType={cardTypes[Math.floor(Math.random() * cardTypes.length)]}
             displayType={
               isThumbnail ? CardDisplayType.THUMBNAIL : CardDisplayType.COMPACT
             }
           />
-          {index === 5 && HotTopicsComponent}
-          {index === 11 && CommunitySectionComponent}
+          {index === HOT_TOPIC && <HotTopicWidget />}
+          {index === POPULAR_COMMUNITY &&
+            !comPopIsLoading &&
+            comPopData?.data && (
+              <CommunitySection
+                title="Komunitas Populer"
+                items={comPopData.data}
+              />
+            )}
         </Fragment>
       )
     })
@@ -65,12 +78,11 @@ const HotThreadSection = ({
 
   return (
     <>
-      <div className="mb-2 flex items-center justify-between p-4 dark:bg-black lg:bg-white lg:dark:bg-grey-7">
+      <div className="mb-2 flex items-center justify-between bg-white p-4 dark:bg-grey-7">
         <SectionHeader
           icon="fire-alt"
-          iconClassName="text-white"
+          iconClassName="text-white bg-red"
           title="Hot Thread"
-          className="bg-red"
         />
         <SwitchThumbnail isThumbnail={isThumbnail} onChange={setThumbnail} />
       </div>
@@ -79,10 +91,12 @@ const HotThreadSection = ({
         <LoadMoreContextProvider
           className="p-2"
           onVisible={() => {
-            // console.log('loadMore')
+            if (!isValidating) {
+              setSize(size + 1)
+            }
           }}
         >
-          <LoadingGif />
+          <LoadingSpinner />
         </LoadMoreContextProvider>
       )}
     </>

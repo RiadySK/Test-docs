@@ -1,11 +1,12 @@
 import { ReactElement, useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 
-import UserMenu from 'components/_layout/global/userMenu'
-import UserNotification from 'components/_layout/global/userNotification'
-import LoginModal from 'components/_layout/global/loginModal'
-import Search from './search'
 import Button from 'components/common/button'
+import Create from 'components/_layout/global/create'
+import UserMenu from 'components/_layout/global/userMenu'
+import LoginModal from 'components/_layout/global/loginModal'
+import UserNotification from 'components/_layout/global/userNotification'
+import Search from './search'
 
 const Header = (): ReactElement => {
   const { theme } = useTheme()
@@ -42,19 +43,13 @@ const Header = (): ReactElement => {
             </div>
           </div>
           <div className="ml-16 flex flex-grow items-center">
-            <div className="relative flex-1">
+            <div className="relative z-10 flex-1">
               <Search />
             </div>
             <div className="ml-2">
-              <Button type="blue-alt">Buat Thread</Button>
+              <Create />
             </div>
             <LoginModal />
-            {/* 
-            <span
-              className="ml-1 cursor-pointer"
-            >
-              <kaskus-icon size="medium" variant="cog"></kaskus-icon>
-            </span> */}
             {/* if Login */}
             <div className="ml-2">
               <UserNotification />

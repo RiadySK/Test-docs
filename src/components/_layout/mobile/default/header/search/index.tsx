@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import { useState } from 'react'
 import Overlay from 'components/common/overlay'
 import SearchResult from './result'
+import Icon from 'components/common/icon'
 
 const Search = () => {
   const [isShowSearchResult, setShowSearchResult] = useState<boolean>(false)
@@ -10,16 +11,12 @@ const Search = () => {
     <>
       <span
         className={classNames(
-          'relative block cursor-pointer rounded-lg text-sm hover:bg-grey-2 dark:hover:bg-grey-8',
-          isShowSearchResult && 'z-50 bg-grey-2 dark:bg-grey-8',
+          'relative block cursor-pointer rounded-lg p-2 text-sm hover:bg-grey-2 dark:hover:bg-grey-7',
+          isShowSearchResult && 'z-50 bg-grey-2 dark:bg-grey-7',
         )}
         onClick={() => setShowSearchResult(!isShowSearchResult)}
       >
-        <kaskus-icon
-          size="medium"
-          variant={isShowSearchResult ? 'times' : 'search'}
-          noClick
-        ></kaskus-icon>
+        <Icon variant={isShowSearchResult ? 'times' : 'search'} />
       </span>
       {isShowSearchResult && (
         <>

@@ -1,5 +1,10 @@
+.notification-container {
+  @apply flex w-full flex-wrap overflow-y-auto;
+  max-height: calc(100vh - 300px);
+}
+
 .notification-item {
-  @apply flex w-full border-b border-grey-3 bg-grey-1;
+  @apply flex w-full border-b border-grey-3 bg-white dark:border-grey-6 dark:bg-grey-8;
 }
 
 .notification-item:last-child {

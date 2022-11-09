@@ -1,5 +1,10 @@
+.userMenu-container {
+  @apply flex w-full flex-wrap overflow-y-auto;
+  max-height: calc(100vh - 60px);
+}
+
 .userMenu-item {
-  @apply flex w-full border-b border-grey-3;
+  @apply flex w-full whitespace-nowrap border-b border-grey-3;
 }
 
 .userMenu-item:last-child {

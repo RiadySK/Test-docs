@@ -16,7 +16,9 @@ interface Props {
   displayName: string
   dateline: number
   membershipStatus: number
-  cardType?: 'default' | 'live' | 'video' | 'ads' | 'textOnly'
+  promotedUsername?: string
+  promotedEntitlement?: string
+  threadId?: string
   onClickJoinCommunity?: VoidFunction
 }
 
@@ -29,7 +31,8 @@ export default function HotThreadCardHeader({
   displayName,
   dateline,
   membershipStatus,
-  cardType,
+  promotedUsername,
+  promotedEntitlement,
   onClickJoinCommunity,
 }: Props) {
   const threadListUrl = URL_THREAD_LIST.replace(
@@ -41,6 +44,8 @@ export default function HotThreadCardHeader({
     PARAMS_ROUTES.ID,
     userId.toString(),
   )
+
+  const isPromoted = !!promotedUsername
 
   return (
     <div className={classNames('flex py-2 md:mb-1 md:pt-0', className)}>
@@ -55,7 +60,7 @@ export default function HotThreadCardHeader({
           >
             {communityName}
           </a>
-          {cardType === 'ads' ? (
+          {isPromoted ? (
             <a
               className="ml-2 text-blue dark:text-blue-night"
               href={threadListUrl}
@@ -74,15 +79,23 @@ export default function HotThreadCardHeader({
           )}
         </div>
         <div className="flex text-xs md:text-sm">
-          <a
-            href={profileUrl}
-            className="text-secondary dark:text-secondary-night"
-          >
-            {displayName}
-          </a>
+          {isPromoted ? (
+            <div className="text-secondary dark:text-secondary-night">
+              {promotedUsername}
+            </div>
+          ) : (
+            <a
+              href={profileUrl}
+              className="text-secondary dark:text-secondary-night"
+            >
+              {displayName}
+            </a>
+          )}
           <div className="ml-1 text-primary dark:text-primary-night">•</div>
           <div className="ml-1 text-tertiary dark:text-tertiary-night">
-            {cardType === 'ads' ? 'Spotlight' : parseDate(dateline)}
+            {isPromoted
+              ? promotedEntitlement || 'Sponsored'
+              : parseDate(dateline)}
           </div>
         </div>
       </div>

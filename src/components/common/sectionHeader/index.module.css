@@ -1,5 +1,5 @@
 .sectionHeaderTitle {
-  @apply font-secondary text-xl font-bold text-primary 
+  @apply font-secondary text-base lg:text-xl font-bold text-primary 
  }
  
  .sectionHeaderIcon {

@@ -41,5 +41,5 @@ const useThread = (
   return useSWR<ApiResponse<Thread[]>>(url, getFetcher(url))
 }
 
-export { useThreadMock, useThreadInfiniteMock }
+export { useThreadMock, useThreadInfiniteMock, useThreadRecommendation }
 export default useThread

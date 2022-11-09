@@ -7,13 +7,17 @@ import Creator from '../creator'
 
 import 'swiper/css/navigation'
 import styles from './index.module.css'
+import Icon from 'components/common/icon'
+import { useCreatorMock } from 'services/kreator'
 
 interface CreatorSectionProps {
   className?: string
-  items: Kreator[]
 }
 
-const CreatorSection = ({ items, className }: CreatorSectionProps) => {
+const CreatorSection = ({ className }: CreatorSectionProps) => {
+  const { data, isLoading } = useCreatorMock()
+  if (!data?.data.length) return null
+
   return (
     <div
       className={classNames(
@@ -44,27 +48,18 @@ const CreatorSection = ({ items, className }: CreatorSectionProps) => {
           slidesOffsetBefore={16}
           className={styles['creatorSwiper']}
         >
-          {items.map((item, i) => (
-            <SwiperSlide key={i}>
-              <Creator {...item} />
-            </SwiperSlide>
-          ))}
+          {!isLoading &&
+            data?.data.map((data, i) => (
+              <SwiperSlide key={i}>
+                <Creator item={data} />
+              </SwiperSlide>
+            ))}
         </Swiper>
         <div className="prev align-item invisible absolute inset-y-1/2 left-5 right-auto z-10 hidden h-10 w-10 -translate-x-1/2 -translate-y-1/2 cursor-pointer justify-center rounded-full bg-white shadow-md hover:opacity-50 group-hover:visible lg:flex">
-          <kaskus-icon
-            nopadding
-            noClick
-            cursor="pointer"
-            variant="chevron-left"
-          ></kaskus-icon>
+          <Icon className="m-auto text-grey-8" variant="chevron-left" />
         </div>
         <div className="next align-item invisible absolute inset-y-1/2 left-auto -right-5 z-10 hidden h-10 w-10 -translate-x-1/2 -translate-y-1/2 cursor-pointer justify-center rounded-full bg-white shadow-md hover:opacity-50 group-hover:visible lg:flex">
-          <kaskus-icon
-            nopadding
-            noClick
-            cursor="pointer"
-            variant="chevron-right"
-          ></kaskus-icon>
+          <Icon className="m-auto text-grey-8" variant="chevron-right" />
         </div>
       </div>
     </div>

@@ -8,12 +8,10 @@ const imageList: Image[] = [
   {
     url: 'http://placekitten.com/200/200',
     is_censored: false,
-  },
-  {
+  }, {
     url: 'http://placekitten.com/300/300',
     is_censored: true,
-  },
-  {
+  }, {
     url: 'http://placekitten.com/400/400',
     is_censored: false,
   },
@@ -79,7 +77,6 @@ const threadList: Thread[] = [
     id: 'mockId1',
     slug: 'siput nomor 1',
     title: 'nananana nanana',
-    description: 'Lorem ipsum dolor sit amet, sed do et magna aliqua.',
     thumbnail: imageList[Math.floor(Math.random() * 3)]!,
     community: {
       id: 23,
@@ -103,7 +100,6 @@ const threadList: Thread[] = [
     id: 'mockId2',
     slug: 'siput juara 2',
     title: 'mockName numba tu',
-    description: 'Cursus mattis molestie a iaculis at.',
     thumbnail: imageList[Math.floor(Math.random() * 3)]!,
     community: {
       id: 9,
@@ -127,7 +123,6 @@ const threadList: Thread[] = [
     id: 'mockId3',
     slug: 'siput lantai 3',
     title: 'mockName numba drei',
-    description: 'Morbi tristique senectus et netus. Faucibus turpis in eu mi.',
     thumbnail: imageList[Math.floor(Math.random() * 3)]!,
     community: {
       id: 42,

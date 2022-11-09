@@ -64,7 +64,7 @@ const Share = ({
       <Icon
         variant={isActive ? 'times' : 'share-alt'}
         className={classNames(
-          ' h-4 w-4 cursor-pointer p-2 text-sm hover:bg-grey-2 lg:text-base',
+          ' h-4 w-4 cursor-pointer p-2 text-sm hover:bg-grey-2 dark:hover:bg-grey-8 lg:text-base',
           styles['sharer-icon'],
         )}
         onClick={() => handleShare()}
@@ -83,7 +83,7 @@ const Share = ({
         {isActive && (
           <div
             className={classNames(
-              'absolute z-50 flex overflow-hidden rounded-sm bg-white shadow-md dark:bg-grey-8',
+              'absolute z-50 flex overflow-hidden rounded-sm bg-white shadow-md dark:bg-grey-7',
               styles['sharer-container'],
               styles[direction],
             )}

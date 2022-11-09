@@ -2,7 +2,7 @@
   width: calc(100vw - 8px);
   max-height: calc(100vh - 60px);
   top: 52px;
-  @apply fixed left-1 z-20 mt-1 hidden select-none rounded-lg shadow-sm lg:absolute lg:top-full lg:left-auto lg:right-0 lg:mt-2 lg:w-64;
+  @apply fixed left-1 z-20 mt-1 hidden select-none rounded-lg shadow-sm lg:absolute lg:top-full lg:left-auto lg:right-0 lg:mt-2 lg:w-fit;
 }
 
 .headerMenuDrawer::before {

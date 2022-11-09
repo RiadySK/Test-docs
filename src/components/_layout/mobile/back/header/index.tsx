@@ -2,6 +2,7 @@ import { ReactElement, useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 import { useBodyTheme } from 'contexts/theme'
 import { useRouter } from 'next/router'
+import Icon from 'components/common/icon'
 
 interface HeaderProps {
   className?: string
@@ -27,11 +28,7 @@ const Header = ({ className }: HeaderProps): ReactElement => {
         <div className="mx-auto flex w-full justify-between px-2 py-3">
           <div className="flex items-center">
             <span className="p-1" onClick={() => router.push('/mobile/home')}>
-              <kaskus-icon
-                size="medium"
-                variant="arrow-left"
-                nopadding
-              ></kaskus-icon>
+              <Icon variant="arrow-left" />
             </span>
             <div className="relative ml-1">
               <img
